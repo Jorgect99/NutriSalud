@@ -25,6 +25,9 @@ urlpatterns = [
     #paths web
     path('', include('web.urls')),
 
+    #paths contact
+    path('contact/', include('contact.urls')),
+
     #paths admin
     path('admin/', admin.site.urls),
 
