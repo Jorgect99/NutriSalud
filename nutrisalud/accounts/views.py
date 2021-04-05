@@ -1,12 +1,19 @@
 from django.contrib.auth import authenticate, logout, login
 from django.shortcuts import render, HttpResponseRedirect
 
-from accounts.forms import LoginForm
+from accounts.forms import LoginForm, SignupForm
 
 # Create your views here.
 
-def registerPage(request):
-    context = {}
+def signupPage(request):
+    if request.POST:
+        form = SignupForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/web')
+    else:
+        form = SignupForm()
+    context = {'form':form}
     return render(request, 'accounts/registration.html', context)
 
 def loginPage(request):
@@ -28,7 +35,7 @@ def loginPage(request):
 
 def logoutPage(request):
     logout(request)
-    return HttpResponseRedirect('/login')
+    return HttpResponseRedirect('/web')
 
 
             
