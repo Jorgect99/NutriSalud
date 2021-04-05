@@ -1,4 +1,5 @@
 from django.contrib.auth.hashers import make_password
+from django.core.exceptions import ValidationError
 
 from django import forms
 from .models import Profile
@@ -28,23 +29,28 @@ class SignupForm(forms.ModelForm):
 
     def clean(self):
         data = super(SignupForm, self).clean()
+        if not ('first_name' in data and data['first_name']):
+            raise ValidationError("Se requiere nombre")
+
         if 'password' in data and data['password'] != data['password2']:
             raise ValidationError("Contraseñas no coinciden")
 
     def save(self, commit=True):
-        u = super(SignupForm, self).save(commit=False)
+        user = super(SignupForm, self).save(commit=False)
+        profile = {
+            "last_name_m": self.cleaned_data.get('last_name_m')
 
-        if not u.id:
-            u.password = make_password(self.cleaned_data['password'])
-            u.username = u.email
+        }
+        user.profile = Profile(**profile)
+
+        if not user.id:
+            user.password = make_password(self.cleaned_data['password'])
+            user.username = user.email
         if commit:
-            u.save()
+            user.save()
+            user.profile.save()
 
-        self.instance.profile = Profile()
-        self.instance.profile.last_name_m = self.cleaned_data.get('last_name_m')
-        self.instance.profile.save()
-
-        return u
+        return user
 
     
 

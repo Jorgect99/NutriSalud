@@ -1,5 +1,5 @@
 from django.contrib.auth import authenticate, logout, login
-from django.shortcuts import render, HttpResponseRedirect
+from django.shortcuts import render, HttpResponseRedirect, redirect
 
 from accounts.forms import LoginForm, SignupForm
 
@@ -10,7 +10,7 @@ def signupPage(request):
         form = SignupForm(request.POST)
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect('/web')
+            return HttpResponseRedirect('/accounts/login/?register')
     else:
         form = SignupForm()
     context = {'form':form}

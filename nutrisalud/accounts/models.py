@@ -9,7 +9,7 @@ def custom_upload_to(instance, filename):
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete = models.CASCADE, related_name='profile')
-    last_name_m = models.CharField(max_length=150, blank=True, verbose_name="Segundo Apellido")
+    last_name_m = models.CharField(max_length=150, blank=True, null=True, verbose_name="Segundo Apellido")
     phone = models.CharField(max_length=10, blank=True, verbose_name="Teléfono")
     birth_date = models.DateField(null=True, blank=True, verbose_name="Fecha de Nacimiento")
     avatar = models.ImageField(upload_to = custom_upload_to, null = True, blank = True, verbose_name="Avatar")
