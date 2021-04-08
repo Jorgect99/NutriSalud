@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'registration',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -41,7 +42,7 @@ INSTALLED_APPS = [
     'web',
     'contact',
     'citas',
-    'accounts',
+    
 ]
 
 MIDDLEWARE = [
@@ -133,3 +134,11 @@ EMAIL_HOST = 'smtp.mailtrap.io'
 EMAIL_HOST_USER = '246be2383ccde2'
 EMAIL_HOST_PASSWORD = 'e3aa019411dd36'
 EMAIL_PORT = '2525'
+
+# Emails
+if DEBUG:
+    EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
+    EMAIL_FILE_PATH = os.path.join(BASE_DIR, "sent_emails")
+else:
+    #Aqui hay que configurar un email real para produccion
+    pass

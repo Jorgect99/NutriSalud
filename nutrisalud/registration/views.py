@@ -1,7 +1,7 @@
 from django.contrib.auth import authenticate, logout, login
 from django.shortcuts import render, HttpResponseRedirect, redirect
 
-from accounts.forms import LoginForm, SignupForm
+from registration.forms import LoginForm, SignupForm
 
 # Create your views here.
 
@@ -10,11 +10,11 @@ def signupPage(request):
         form = SignupForm(request.POST)
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect('/accounts/login/?register')
+            return HttpResponseRedirect('/registration/login/?register')
     else:
         form = SignupForm()
     context = {'form':form}
-    return render(request, 'accounts/registration.html', context)
+    return render(request, 'registration/registration.html', context)
 
 def loginPage(request):
     if request.POST:
@@ -31,15 +31,8 @@ def loginPage(request):
     else:
         form = LoginForm()
     context = {'form':form}
-    return render(request, 'accounts/login.html', context)
+    return render(request, 'registration/login.html', context)
 
 def logoutPage(request):
     logout(request)
     return HttpResponseRedirect('/web')
-
-
-            
-    
-
-
-

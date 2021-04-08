@@ -34,6 +34,13 @@ class SignupForm(forms.ModelForm):
 
         if 'password' in data and data['password'] != data['password2']:
             raise ValidationError("Contraseñas no coinciden")
+    
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
+        if User.objects.filter(email=email).exists():
+            raise forms.ValidationError("El email ya esta registrado, prueba con otro.")
+        return email
+
 
     def save(self, commit=True):
         user = super(SignupForm, self).save(commit=False)
@@ -51,7 +58,5 @@ class SignupForm(forms.ModelForm):
             user.profile.save()
 
         return user
-
-    
 
     

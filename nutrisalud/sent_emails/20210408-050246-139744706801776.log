@@ -1,0 +1,25 @@
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Subject: Password reset on 127.0.0.1:8000
+From: webmaster@localhost
+To: jorge@gmail.com
+Date: Thu, 08 Apr 2021 05:02:46 -0000
+Message-ID: <161785816607.39.2189310718904924651@DESKTOP-GNBQPOD.localdomain>
+
+
+You're receiving this email because you requested a password reset for your user account at 127.0.0.1:8000.
+
+Please go to the following page and choose a new password:
+
+http://127.0.0.1:8000/accounts/reset/MQ/akrsom-26ed639c93a162338a4b0874ce42a724/
+
+Your username, in case you’ve forgotten: jorge@gmail.com
+
+Thanks for using our site!
+
+The 127.0.0.1:8000 team
+
+
+
+-------------------------------------------------------------------------------
