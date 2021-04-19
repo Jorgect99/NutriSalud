@@ -1,65 +1,73 @@
 {% extends 'web/base.html' %}
 
-{% block title %}Contactanos{% endblock %}
+{% block title %}Citas{% endblock %}
 
 {% load static %}
 {% block content%} 
-<section class="page-section about-heading">
+<main role="main">
   <div class="container">
-    <img class="img-fluid rounded about-heading-img mb-3 mb-lg-0" src="img/contact.jpg" alt="">
-    <div class="about-heading-content">
-      <div class="row">
-        <div class="col-xl-9 col-lg-10 mx-auto">
-          <div class="bg-faded rounded p-5">
-            <h2 class="section-heading mb-4">
-              <span class="section-heading-upper">Envíanos tus dudas</span>
-              <span class="section-heading-lower">Contacto</span>
-            </h2>
-
-            <!-- Formulario de contacto -->
-            {% if 'ok' in request.GET %}
-              <p><b>Su mensaje se envio correctamente.</b></p>
-            {% endif %}  
-
-            {% if 'fail' in request.GET %}
-              <p><b>Su mensaje no se envio correctamente.</b></p>
-            {% endif %}  
-            
-            <form action="" method="POST">
-              {% csrf_token %}
-              <div class="form-group">
-                  <label>Nombre *</label>
-                  <div class="input-group">
-                      {{form.name}}
-                  </div>
-                  {{form.name.errors}}
+    <div class="row mt-3">
+      <div class="col-md-9 mx-auto mb-5">
+        <form action="" method="post">{% csrf_token %}
+          <h3 class="mb-4">Citas</h3>
+          {{ form.errors }}
+          <p>
+            <label>Nombre(s):</label>
+            <input type="text" name="first_name" required
+              id="id_first_name" class="form-control" placeholder=""/>
+          </p>
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="grid-container">
+                <p>
+                  <label>Apellido Paterno:</label>
+                  <input type="text" name="last_name" required
+                  id="id_last_name" class="form-control" placeholder=""/>
+                </p>
               </div>
-              <div class="form-group">
-                  <label>Email *</label>
-                  <div class="input-group">
-                      {{form.email}}
-                  </div>
-                  {{form.email.errors}}
+            </div>
+            <div class="col-lg-6">
+              <div class="grid-container">
+                <p>
+                  <label>Apellido Materno:</label>
+                  <input type="text" name="last_name_m"
+                  id="id_last_name_m" class="form-control" placeholder=""/>
+                </p>
               </div>
-              <div class="form-group">
-                  <label>Mensaje *</label>
-                  <div class="input-group">
-                      {{form.content}}
-                  </div>
-                  {{form.content.errors}}
-              </div>
-              <div class="text-center">
-                  <input type="submit" class="btn btn-primary btn-block py-2" value="Enviar">
-              </div>
-          </form>
-            
-            <!-- Fin formulario de contacto -->
-
+            </div>
           </div>
-        </div>
+          <p>
+            <label>Correo electronico:</label>
+            <input type="email" name="email" required id="id_email" class="form-control" placeholder="nutri@example.com">
+          </p>
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="grid-container">
+                  <p>
+                    <label>Telefono:</label>
+                    <input type="text" name="phone"
+                      id="phone" class="form-control" placeholder=""/>
+                  </p>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="grid-container">
+                  <p>
+                    <label>Fecha y hora:</label>
+                    <input type="datetime-local" name="date" required id="date" class="form-control" value="2008-05-13T22:33:00">
+                  </p>
+              </div>
+            </div>
+          </div>
+          <p>
+              <label>Comentario:</label>
+              <textarea name="commentary" id="commentary"class="form-control" rows="3" ></textarea>
+          </p>
+          <p><input type="submit" class="btn btn-primary btn-block" value="Agendar una Cita"></p>
+        </form>
       </div>
     </div>
   </div>
-</section>
+</main>
 {% endblock %}
 

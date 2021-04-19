@@ -34,7 +34,7 @@
                 <a class="nav-link" href="{% url 'contact' %}">Contacto</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="">Agendar Cita</a>
+                <a class="nav-link" href="{% url 'citas' %}">Agendar Cita</a>
               </li>
             </ul>
             <ul class="navbar-nav">
@@ -46,6 +46,9 @@
                   <a class="nav-link" href="{% url 'login' %}">Acceder</a>
                 </li>
               {% else %}
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'home' %}">Profile</a>
+                </li>
                 <li class="nav-item">
                   <a class="nav-link" href="{% url 'logout' %}">Salir</a>
                 </li>

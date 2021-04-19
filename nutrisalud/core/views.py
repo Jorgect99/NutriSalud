@@ -1,6 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required, user_passes_test
 from registration.decorators import unauthenticated_user, allow_users, admin_only
+
+from django.contrib.auth.models import User
 
 # Create your views here.
 
@@ -11,8 +13,17 @@ def home(request):
 
 @login_required(login_url='login')
 @allow_users(allowed_roles=['admin'])
-def clientes(request):
-    return render(request, 'core/clientes.html')
+def clientes(request):  
+    clientes = User.objects.filter(groups__name='cliente')
+    context = {'clientes':clientes}
+    return render(request, 'core/clientes.html', context)
+
+@login_required(login_url='login')
+@allow_users(allowed_roles=['admin'])
+def eliminarCliente(request, cliente_id):
+    cliente = User.objects.get(id=cliente_id)
+    cliente.delete()
+    return redirect('clientes')
 
 @login_required(login_url='login')
 @allow_users(allowed_roles=['admin'])

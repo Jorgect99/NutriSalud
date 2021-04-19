@@ -59,4 +59,3 @@ class SignupForm(forms.ModelForm):
 
         return user
 
-    
