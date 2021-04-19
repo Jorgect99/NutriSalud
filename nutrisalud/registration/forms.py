@@ -59,3 +59,30 @@ class SignupForm(forms.ModelForm):
 
         return user
 
+class ProfileForm(forms.ModelForm):
+
+    first_name = forms.CharField(label='Nombre(s):', max_length=150)
+    last_name = forms.CharField(label='Apellido Paterno:', max_length=150)
+    
+    class Meta:
+        model = Profile
+        fields = ["last_name_m", "phone", "birth_date", "avatar"]
+
+        labels = {
+            'last_name_m': 'Apellido Materno:',
+            'phone': 'Teléfono:',
+            'birth_date': 'Fecha de Nacimiento:',
+            'avatar': 'Imagen de perfil:',
+        }
+
+    def save(self, commit=True):
+        profile = super(ProfileForm, self).save(commit=False)
+        
+        profile.user.first_name = self.cleaned_data['first_name']
+        profile.user.last_name = self.cleaned_data['last_name']
+        
+        if commit:
+            profile.save()
+            profile.user.save()
+
+        return profile

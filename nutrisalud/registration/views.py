@@ -8,7 +8,7 @@ from django.urls import reverse_lazy
 
 from django.shortcuts import render, HttpResponseRedirect, redirect
 
-from registration.forms import LoginForm, SignupForm
+from registration.forms import LoginForm, SignupForm, ProfileForm
 from .decorators import unauthenticated_user, allow_users
 from .models import Profile
 
@@ -53,4 +53,18 @@ def loginPage(request):
 def logoutPage(request):
     logout(request)
     return HttpResponseRedirect('/web')
+
+@login_required(login_url='login')
+def profile(request):
+    form = ProfileForm(instance=request.user.profile)
+    context = {}
+    if request.POST:
+        form = ProfileForm(request.POST,request.FILES, instance=request.user.profile)
+        if form.is_valid():
+            form.save()
+            context = {'mensaje':'Se realizaron los cambios'}
+    context['form'] = form
+
+    return render(request, 'registration/profile_form.html', context=context)
+
 

@@ -26,10 +26,9 @@
                                     <td>{{ cliente.last_name }}</td>
                                     <td>6624661855</td>
                                     <td>
-                                        <button class="btn btn-warning"><i class="fa fa-check"></i></button>
-                                        <button onclick="location.href='{% url 'eliminar_cliente' cliente.id %}'" class="btn btn-danger">
-                                            <i class="fa fa-trash"></i> Delete
-                                        </button>
+                                        <!--<a class="btn btn-warning" href="{% url 'eliminar_cliente' cliente.id %}"><i class="fa fa-check"></i></a>-->
+                                        <a class="btn btn-danger" href="{% url 'eliminar_cliente' cliente.id %}"><i class="fa fa-trash"></i></a>
+                                        
                                     </td>
                                 </tr>
                                 {% endfor %}
