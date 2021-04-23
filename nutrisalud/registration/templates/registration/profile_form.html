@@ -4,6 +4,7 @@
 {% block content %}
 
 <style>.errorlist{color:red;}</style>
+
 <main role="main">
   <div class="container">
     <div class="row mt-3">
@@ -25,7 +26,7 @@
               {{ form.errors }}
               <p>
                 <div class="custom-file">
-                  <input type="file" name="avatar" class="custom-file-input" id="id_avatar">
+                  <input type="file" name="avatar" class="custom-file-input" id="id_avatar" aria-describedby="fileHelp" accept=".jpg,.png,.jpng">
                   <label class="custom-file-label" for="inputGroupFile04">Elegir imagen</label>
                 </div>
               

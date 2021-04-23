@@ -3,5 +3,5 @@ from . import views
 
 urlpatterns = [
     #paths core
-    path('', views.citas, name='citas'),
+    path('', views.setAppointment, name='citas'),
 ]

@@ -14,7 +14,7 @@
           <p>
             <label>Nombre(s):</label>
             <input type="text" name="first_name" required
-              id="id_first_name" class="form-control" placeholder=""/>
+              id="id_first_name" class="form-control" value="{{ request.user.first_name }}" readonly/>
           </p>
           <div class="row">
             <div class="col-lg-6">
@@ -22,7 +22,7 @@
                 <p>
                   <label>Apellido Paterno:</label>
                   <input type="text" name="last_name" required
-                  id="id_last_name" class="form-control" placeholder=""/>
+                  id="id_last_name" class="form-control" value="{{ request.user.last_name }}" readonly/>
                 </p>
               </div>
             </div>
@@ -31,14 +31,14 @@
                 <p>
                   <label>Apellido Materno:</label>
                   <input type="text" name="last_name_m"
-                  id="id_last_name_m" class="form-control" placeholder=""/>
+                  id="id_last_name_m" class="form-control" value="{{ request.user.profile.last_name_m }}" readonly/>
                 </p>
               </div>
             </div>
           </div>
           <p>
             <label>Correo electronico:</label>
-            <input type="email" name="email" required id="id_email" class="form-control" placeholder="nutri@example.com">
+            <input type="email" name="email" required id="id_email" class="form-control" value="{{ request.user.email }}" readonly>
           </p>
           <div class="row">
             <div class="col-lg-6">
@@ -46,7 +46,7 @@
                   <p>
                     <label>Telefono:</label>
                     <input type="text" name="phone"
-                      id="phone" class="form-control" placeholder=""/>
+                      id="id_phone" class="form-control" value="{{ request.user.profile.phone }}"/>
                   </p>
               </div>
             </div>
@@ -54,14 +54,14 @@
               <div class="grid-container">
                   <p>
                     <label>Fecha y hora:</label>
-                    <input type="datetime-local" name="date" required id="date" class="form-control" value="2008-05-13T22:33:00">
+                    <input type="datetime-local" name="date" required id="id_date" class="form-control" value="2008-05-13T22:33:00">
                   </p>
               </div>
             </div>
           </div>
           <p>
               <label>Comentario:</label>
-              <textarea name="commentary" id="commentary"class="form-control" rows="3" ></textarea>
+              <textarea name="commentary" id="id_commentary"class="form-control" rows="3" ></textarea>
           </p>
           <p><input type="submit" class="btn btn-primary btn-block" value="Agendar una Cita"></p>
         </form>
