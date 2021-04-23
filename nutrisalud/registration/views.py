@@ -62,7 +62,7 @@ def profile(request):
         form = ProfileForm(request.POST,request.FILES, instance=request.user.profile)
         if form.is_valid():
             form.save()
-            context = {'mensaje':'Se realizaron los cambios'}
+            context = {'mensaje':'Perfil actualizado correctamente.'}
     context['form'] = form
 
     return render(request, 'registration/profile_form.html', context=context)

@@ -12,11 +12,7 @@ def setAppointment(request):
     if request.POST:
         form = AppointmentForm(request.POST)
         if form.is_valid():
-            appointment = form.save(commit=False)
-            appointment.client = request.user
-            appointment.save()
-            request.user.profile.phone = request.POST.get('phone')
-            request.user.profile.save()
+            form.save(request=request)
             return HttpResponseRedirect('/web')
     context['form'] = form
 
