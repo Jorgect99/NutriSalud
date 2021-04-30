@@ -41,7 +41,7 @@
             <input type="email" name="email" required id="id_email" class="form-control" value="{{ request.user.email }}" readonly>
           </p>
           <div class="row">
-            <div class="col-lg-6">
+            <div class="col-lg-4">
               <div class="grid-container">
                   <p>
                     <label>Telefono:</label>
@@ -50,18 +50,26 @@
                   </p>
               </div>
             </div>
-            <div class="col-lg-6">
+            <div class="col-lg-4">
               <div class="grid-container">
                   <p>
-                    <label>Fecha y hora:</label>
-                    <input type="datetime-local" name="date" required id="id_date" class="form-control" value="2008-05-13T22:33:00">
+                    <label>Fecha:</label>
+                    <input type="date" name="date" id="id_date" class="form-control" min="2021-04-30" required>
+                  </p>
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="grid-container">
+                  <p>
+                    <label>Hora:</label>
+                    <input type="time" name="hour" id="id_hour" class="form-control" required>
                   </p>
               </div>
             </div>
           </div>
           <p>
-              <label>Comentario:</label>
-              <textarea name="commentary" id="id_commentary"class="form-control" rows="3" ></textarea>
+            <label>Comentario:</label>
+            <textarea name="commentary" id="id_commentary"class="form-control" rows="3" ></textarea>
           </p>
           <p><input type="submit" class="btn btn-primary btn-block" value="Agendar una Cita"></p>
         </form>

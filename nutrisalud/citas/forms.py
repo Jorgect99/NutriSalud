@@ -9,7 +9,7 @@ class AppointmentForm(forms.ModelForm):
 
     class Meta:
         model = Appointment
-        fields = ["date", "commentary"]
+        fields = ["date", "hour", "commentary"]
 
     def save(self, commit=True, request = None):
         appointment = super(AppointmentForm, self).save(commit=False)
