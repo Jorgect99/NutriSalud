@@ -7,4 +7,6 @@ urlpatterns = [
     path('clientes/delete/<int:cliente_id>', views.eliminarCliente, name="eliminar_cliente"),
     path('formula/imc', views.imc, name="imc"),
     path('formula/met', views.met, name="met"),
+    path('formula/grupos-nutri', views.gruposNutricionales, name="grupos-nutri"),
+    path('formula/dieta', views.dieta, name="dieta"),
 ]

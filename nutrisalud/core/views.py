@@ -35,3 +35,12 @@ def imc(request):
 def met(request):
     return render(request, 'core/formulas/met.html')
 
+@login_required(login_url='login')
+@allow_users(allowed_roles=['admin'])    
+def gruposNutricionales(request):
+    return render(request, 'core/formulas/gruposnutricionales.html')
+
+@login_required(login_url='login')
+@allow_users(allowed_roles=['admin'])    
+def dieta(request):
+    return render(request, 'core/formulas/dietas.html')
