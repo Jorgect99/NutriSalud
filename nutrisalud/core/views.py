@@ -31,9 +31,15 @@ def imc(request):
     return render(request, 'core/formulas/imc.html')
 
 @login_required(login_url='login')
-@allow_users(allowed_roles=['admin'])    
-def met(request):
-    return render(request, 'core/formulas/met.html')
+@allow_users(allowed_roles=['admin'])
+def pesoCorregido(request):
+    return render(request, 'core/formulas/pesocorregido.html')
+
+@login_required(login_url='login')
+@allow_users(allowed_roles=['admin'])
+def ger(request):
+    return render(request, 'core/formulas/ger.html')
+
 
 @login_required(login_url='login')
 @allow_users(allowed_roles=['admin'])    
