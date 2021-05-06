@@ -17,3 +17,6 @@ class Profile(models.Model):
 
     class Meta:
         ordering = ['user__username']
+    
+    def __str__(self):
+        return "{0} {1} {2}".format(self.user.first_name, self.user.last_name, self.last_name_m)

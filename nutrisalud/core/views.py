@@ -4,6 +4,8 @@ from registration.decorators import unauthenticated_user, allow_users, admin_onl
 
 from django.contrib.auth.models import User
 
+from .forms import IMCForm
+
 # Create your views here.
 
 @login_required(login_url='login')
@@ -28,7 +30,14 @@ def eliminarCliente(request, cliente_id):
 @login_required(login_url='login')
 @allow_users(allowed_roles=['admin'])
 def imc(request):
-    return render(request, 'core/formulas/imc.html')
+    context = {}
+    form = IMCForm()
+    if request.method == 'POST':
+        form = IMCForm(request.POST)
+        if form.is_valid():
+            form.save()
+    context = {'form':form}
+    return render(request, 'core/formulas/imc.html', context)
 
 @login_required(login_url='login')
 @allow_users(allowed_roles=['admin'])

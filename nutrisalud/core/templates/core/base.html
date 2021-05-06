@@ -14,13 +14,13 @@
     <link rel="icon" type="image/png" sizes="16x16" href="{% static 'core/assets/images/dieta.png' %}">
     <title>NutriSalud | {% block title %}{% endblock %}</title>
 
-    {% block links %}{% endblock %}
     <link href="{% static 'core/assets/extra-libs/c3/c3.min.css' %}" rel="stylesheet">
     <link href="{% static 'core/assets/libs/chartist/dist/chartist.min.css' %}" rel="stylesheet">
     <link href="{% static 'core/assets/extra-libs/jvector/jquery-jvectormap-2.0.2.css' %}" rel="stylesheet" />
 
     <link href="{% static 'core/dist/css/style.min.css' %}" rel="stylesheet">
-
+    <script src="{% static 'core/assets/libs/jquery/dist/jquery.min.js' %}"></script>
+    {% block links %}{% endblock %}
 </head>
 
 <body>
@@ -160,7 +160,7 @@
 
     </div>
 
-    <script src="{% static 'core/assets/libs/jquery/dist/jquery.min.js' %}"></script>
+    
     <script src="{% static 'core/assets/libs/popper.js/dist/umd/popper.min.js' %}"></script>
     <script src="{% static 'core/assets/libs/bootstrap/dist/js/bootstrap.min.js' %}"></script>
 
