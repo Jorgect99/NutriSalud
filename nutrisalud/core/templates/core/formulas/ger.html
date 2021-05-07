@@ -4,56 +4,64 @@
 {% block title %}GER{% endblock %}
 
 {% block links %}
-  <link href="{% static 'lib/select2-4.0.13/css/select2.css' %}" rel="stylesheet" />
-  <script src="{% static 'lib/select2-4.0.13/js/select2.min.js' %}"></script>
+  <link href="{% static '/lib/select2-4.0.13/css/select2.css' %}" rel="stylesheet"/>
+  <link href="{% static '/lib/select2-4.0.13/css/select2-bootstrap4.min.css' %}" rel="stylesheet"/>
+  <script src="{% static '/lib/select2-4.0.13/js/select2.js' %}"></script>
 {% endblock %}
 
 {% block content %}
 <strong>Calculo del requerimiento energético en reposo</strong>
 <main role="main">
-    <div class="container">
-      <div class="row mt-3">
-        <div class="col-md-8 mx-auto mb-5">
-          <form action="" method="post">{% csrf_token %}
-            <h3 class="mb-4">GER</h3>
-            {{ form.errors }}
-            <p>
-              <label>Cliente:</label>
-              <input type="search" class="form-control" placeholder="">
-            </p>
-            <p>
-              <label>Peso (kg):</label>
-              <input type="number" class="form-control" min="0">
-            </p>
-            <p>
-              <label>Talla (cm):</label>
-              <input type="number" class="form-control" min="0">
-            </p>
-            <p>
-              <label>Edad (años):</label>
-              <input type="number" class="form-control" min="0">
-            </p>
-            <p>
-              <label>Genero:</label>
-              <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
-                <option selected>Elegir...</option>
-                <option value="1">Masculino</option>
-                <option value="2">Femenino</option>
-              </select>
-            </p>
-            <p>
-              <label>Estilo de Vida:</label>
-              <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
-                <option selected>Elegir...</option>
-                <option value="1">Sedentario</option>
-                <option value="2">Activo</option>
-                <option value="3">Vigoroso</option>
-              </select>
-            </p>
-            <p><input type="submit" class="btn btn-primary btn-block" value="Calcular"></p>
-          </form>
-        </div>
+  <div class="container">
+    <div class="row mt-3">
+      <div class="col-md-8 mx-auto mb-5">
+        <form action="" method="post">{% csrf_token %}
+          <h3 class="mb-4">GER</h3>
+          {{ form.errors }}
+          <p>
+            <label>Cliente:</label>
+            {{ form.client }}
+          </p>
+          <p>
+            <label>Peso (kg):</label>
+            <input type="number" name="weight" id="id_weight" class="form-control" min="0">
+          </p>
+          <p>
+            <label>Talla (cm):</label>
+            <input type="number" name="size" id="id_size" class="form-control" min="0">
+          </p>
+          <p>
+            <label>Edad (años):</label>
+            <input type="number" name="age" id="id_age" class="form-control" min="0">
+          </p>
+          <p>
+            <label>Genero:</label>
+            <select class="custom-select mr-sm-2" name="gender" id="id_gender">
+              <option selected>Elegir...</option>
+              <option value="1">Masculino</option>
+              <option value="2">Femenino</option>
+            </select>
+          </p>
+          <p>
+            <label>Estilo de Vida:</label>
+            <select class="custom-select mr-sm-2" name="lifestyle" id="id_lifestyle">
+              <option selected>Elegir...</option>
+              <option value="1">Sedentario</option>
+              <option value="2">Activo</option>
+              <option value="3">Vigoroso</option>
+            </select>
+          </p>
+          <p><input type="submit" class="btn btn-primary btn-block" value="Calcular"></p>
+        </form>
       </div>
     </div>
-  </main>
+  </div>
+</main>
+<script>
+  $(document).ready(function () {
+    $('.select2').select2({
+      theme:'bootstrap4'
+    });
+  });
+</script>
 {% endblock %}

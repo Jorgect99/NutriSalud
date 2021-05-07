@@ -4,7 +4,7 @@ from registration.decorators import unauthenticated_user, allow_users, admin_onl
 
 from django.contrib.auth.models import User
 
-from .forms import IMCForm
+from .forms import IMCForm, PesoCorregidoForm, GERForm
 
 # Create your views here.
 
@@ -42,12 +42,26 @@ def imc(request):
 @login_required(login_url='login')
 @allow_users(allowed_roles=['admin'])
 def pesoCorregido(request):
-    return render(request, 'core/formulas/pesocorregido.html')
+    context = {}
+    form = PesoCorregidoForm()
+    if request.method == 'POST':
+        form = PesoCorregidoForm(request.POST)
+        if form.is_valid():
+            form.save()
+    context = {'form':form}
+    return render(request, 'core/formulas/pesocorregido.html', context)
 
 @login_required(login_url='login')
 @allow_users(allowed_roles=['admin'])
 def ger(request):
-    return render(request, 'core/formulas/ger.html')
+    context = {}
+    form = GERForm()
+    if request.method == 'POST':
+        form = GERForm(request.POST)
+        if form.is_valid():
+            form.save()
+    context = {'form':form}
+    return render(request, 'core/formulas/ger.html', context)
 
 
 @login_required(login_url='login')
