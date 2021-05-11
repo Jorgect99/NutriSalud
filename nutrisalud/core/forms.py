@@ -51,9 +51,9 @@ class PesoCorregidoForm(forms.ModelForm):
     def save(self, commit=True):
         pesocorregido = super(PesoCorregidoForm, self).save(commit=False)
 
-        if self.cleaned_data.get('gender') == "Masculino":
+        if self.cleaned_data.get('gender') == "1":
             pesocorregido.corrected_weight = 23 * (self.cleaned_data.get('height') * self.cleaned_data.get('height'))
-        elif self.cleaned_data.get('gender') == "Femenino":
+        elif self.cleaned_data.get('gender') == "2":
             pesocorregido.corrected_weight = 21.5 * (self.cleaned_data.get('height') * self.cleaned_data.get('height'))
 
         if commit:
@@ -87,16 +87,16 @@ class GERForm(forms.ModelForm):
     def save(self, commit=True):
         ger = super(GERForm, self).save(commit=False)
 
-        if self.cleaned_data.get('gender') == "Masculino":
+        if self.cleaned_data.get('gender') == "1":
             ger.ger = (9.99 * self.cleaned_data.get('weight')) + (6.25 * self.cleaned_data.get('size')) - (4.92 * self.cleaned_data.get('age')) + 5
-        elif self.cleaned_data.get('gender') == "Femenino":
+        elif self.cleaned_data.get('gender') == "2":
             ger.ger = (9.99 * self.cleaned_data.get('weight')) + (6.25 * self.cleaned_data.get('size')) - (4.92 * self.cleaned_data.get('age')) - 161
 
-        if self.cleaned_data.get('lifestyle') == "Sedentario":
+        if self.cleaned_data.get('lifestyle') == "1":
             ger.get = ger.ger * 1.545
-        elif self.cleaned_data.get('lifestyle') == "Activo":
+        elif self.cleaned_data.get('lifestyle') == "2":
             ger.get = ger.ger * 1.845
-        elif self.cleaned_data.get('lifestyle') == "Vigoroso":
+        elif self.cleaned_data.get('lifestyle') == "3":
             ger.get = ger.ger * 2.2
 
         if commit:

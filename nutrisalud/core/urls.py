@@ -10,6 +10,11 @@ urlpatterns = [
     path('formula/pesocorregido', views.pesoCorregido, name="pesocorregido"),
     path('formula/ger', views.ger, name="ger"),
 
+    path('formula/lista-imc', views.lista_imc, name="lista_imc"),
+    path('formula/lista-imc/delete/<int:imc_id>', views.eliminarCalculoIMC, name="eliminar_calculo_imc"),
+    path('formula/lista-pesocorregido', views.lista_pesocorregido, name="lista_pesocorregido"),
+    path('formula/lista-ger', views.lista_ger, name="lista_ger"),
+
     path('formula/grupos-nutri', views.gruposNutricionales, name="grupos-nutri"),
     path('formula/dieta', views.dieta, name="dieta"),
 ]

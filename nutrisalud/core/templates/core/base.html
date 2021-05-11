@@ -109,7 +109,7 @@
 
                         <li class="nav-small-cap"><span class="hide-menu">Calculos</span></li>
                         <li class="sidebar-item"> <a class="sidebar-link has-arrow" href="javascript:void(0)"
-                                aria-expanded="false"><i data-feather="file-text" class="feather-icon"></i><span
+                                aria-expanded="false"><i data-feather="file-plus" class="feather-icon"></i><span
                                     class="hide-menu">Formulas </span></a>
                             <ul aria-expanded="false" class="collapse  first-level base-level-line">
                                 <li class="sidebar-item"><a href="{% url 'imc' %}" class="sidebar-link"><span
@@ -121,37 +121,40 @@
                                     </span></a>
                                 </li>
                                 <li class="sidebar-item"><a href="{% url 'ger' %}" class="sidebar-link"><span
-                                    class="hide-menu"> GER
-                                    </span></a>
-                                </li>
-                                <li class="sidebar-item"><a href="{% url 'grupos-nutri' %}" class="sidebar-link"><span
-                                    class="hide-menu"> Grupos Nutricionales
-                                    </span></a>
-                                </li>
-                                <li class="sidebar-item"><a href="{% url 'dieta' %}" class="sidebar-link"><span
-                                    class="hide-menu"> Dietas
+                                    class="hide-menu"> GER y GET
                                     </span></a>
                                 </li>
                             </ul>
                         </li>
                         
+                        <li class="sidebar-item"> <a class="sidebar-link" href="{% url 'grupos-nutri' %}"
+                            aria-expanded="false"><i data-feather="command" class="feather-icon"></i><span
+                                class="hide-menu">Grupos Nutricionales
+                            </span></a>
+                        </li>
+                        <li class="sidebar-item"> <a class="sidebar-link" href="{% url 'dieta' %}"
+                            aria-expanded="false"><i data-feather="heart" class="feather-icon"></i><span
+                                class="hide-menu">Dietas
+                            </span></a>
+                        </li>
+                                                
                         <li class="list-divider"></li>
+                        
+                        <li class="nav-small-cap"><span class="hide-menu">Historial de Calculos</span></li>
 
-                        <li class="nav-small-cap"><span class="hide-menu">Listas de Calculos</span></li>
-
-                        <li class="sidebar-item"> <a class="sidebar-link" href="{% url 'clientes' %}"
-                            aria-expanded="false"><i data-feather="tag" class="feather-icon"></i><span
-                                class="hide-menu">Listas de IMC
+                        <li class="sidebar-item"> <a class="sidebar-link" href="{% url 'lista_imc' %}"
+                            aria-expanded="false"><i data-feather="file-text" class="feather-icon"></i><span
+                                class="hide-menu">Registro IMC
                             </span></a>
                         </li>
-                        <li class="sidebar-item"> <a class="sidebar-link" href="{% url 'clientes' %}"
-                            aria-expanded="false"><i data-feather="tag" class="feather-icon"></i><span
-                                class="hide-menu">Listas de Peso Corregido
+                        <li class="sidebar-item"> <a class="sidebar-link" href="{% url 'lista_pesocorregido' %}"
+                            aria-expanded="false"><i data-feather="file-text" class="feather-icon"></i><span
+                                class="hide-menu">Registro Peso Corregido
                             </span></a>
                         </li>
-                        <li class="sidebar-item"> <a class="sidebar-link" href="{% url 'clientes' %}"
-                            aria-expanded="false"><i data-feather="tag" class="feather-icon"></i><span
-                                class="hide-menu">Listas de GER
+                        <li class="sidebar-item"> <a class="sidebar-link" href="{% url 'lista_ger' %}"
+                            aria-expanded="false"><i data-feather="file-text" class="feather-icon"></i><span
+                                class="hide-menu">Registro GER
                             </span></a>
                         </li>
 

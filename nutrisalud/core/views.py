@@ -4,6 +4,7 @@ from registration.decorators import unauthenticated_user, allow_users, admin_onl
 
 from django.contrib.auth.models import User
 
+from .models import IMC, PesoCorregido, GER
 from .forms import IMCForm, PesoCorregidoForm, GERForm
 
 # Create your views here.
@@ -36,8 +37,16 @@ def imc(request):
         form = IMCForm(request.POST)
         if form.is_valid():
             form.save()
+            return redirect('lista_imc')
     context = {'form':form}
     return render(request, 'core/formulas/imc.html', context)
+
+@login_required(login_url='login')
+@allow_users(allowed_roles=['admin'])
+def eliminarCalculoIMC(request, imc_id):
+    imc = IMC.objects.get(id=imc_id)
+    imc.delete()
+    return redirect('lista_imc')
 
 @login_required(login_url='login')
 @allow_users(allowed_roles=['admin'])
@@ -48,6 +57,7 @@ def pesoCorregido(request):
         form = PesoCorregidoForm(request.POST)
         if form.is_valid():
             form.save()
+            return redirect('lista_pesocorregido')
     context = {'form':form}
     return render(request, 'core/formulas/pesocorregido.html', context)
 
@@ -60,6 +70,7 @@ def ger(request):
         form = GERForm(request.POST)
         if form.is_valid():
             form.save()
+            return redirect('lista_ger')
     context = {'form':form}
     return render(request, 'core/formulas/ger.html', context)
 
@@ -73,3 +84,24 @@ def gruposNutricionales(request):
 @allow_users(allowed_roles=['admin'])    
 def dieta(request):
     return render(request, 'core/formulas/dietas.html')
+
+@login_required(login_url='login')
+@allow_users(allowed_roles=['admin'])
+def lista_imc(request):  
+    lista_imc = IMC.objects.all()
+    context = {'lista_imc':lista_imc}
+    return render(request, 'core/lista_imc.html', context)
+
+@login_required(login_url='login')
+@allow_users(allowed_roles=['admin'])
+def lista_pesocorregido(request):  
+    lista_pesocorregido = PesoCorregido.objects.all()
+    context = {'lista_pesocorregido':lista_pesocorregido}
+    return render(request, 'core/lista_pesocorregido.html', context)
+
+@login_required(login_url='login')
+@allow_users(allowed_roles=['admin'])
+def lista_ger(request):  
+    lista_ger = GER.objects.all()
+    context = {'lista_ger':lista_ger}
+    return render(request, 'core/lista_ger.html', context)
