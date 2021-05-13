@@ -5,4 +5,53 @@
 
 {% block content %}
 <strong>Grupos Nutricionales</strong>
+<main role="main">
+    <div class="container">
+        <div class="row mt-3">
+        <div class="col-md-8 mx-auto mb-5">
+            <form action="" method="post">{% csrf_token %}
+            <h3 class="mb-4">Grupos Nutricionales</h3>
+            {{ form.errors }}
+            <p>
+                <label>Grupo de alimentos:</label>
+                <select name="food_group" id="food_group" class="form-control mr-sm-2">
+                <option selected>Elegir...</option>
+                <option value="Verdura">Verdura</option>
+                <option value="Frutas">Frutas</option>
+                <option value="Cereal y tubérculos">Cereal y tubérculos</option>
+                <option value="Leguminosas">Leguminosas</option>
+                <option value="Alimentos origen animal">Alimentos origen animal</option>
+                <option value="Leche">Leche</option>
+                <option value="Aceite y grasas">Aceite y grasas</option>
+                <option value="Azúcares">Azúcares</option>
+                <option value="Alimentos libres de energía">Alimentos libres de energía</option>
+                <option value="Bebidas alcohólicas">Bebidas alcohólicas</option>
+                </select>
+            </p>
+            <p>
+                <label>Alimento:</label>
+                <input type="text" name="food" id="id_food" class="form-control" id="placeholder" placeholder="Manzana">
+            </p>
+            <p>
+                <label>Cantidad:</label>
+                <input type="number" name="amount" id="id_amount" class="form-control" step="0.01" min="0">
+            </p>
+            <p>
+                <label>Unidad:</label>
+                <select name="unit" id="id_unit" class="form-control mr-sm-2">
+                <option selected>Elegir...</option>
+                <option value="kg">kg</option>
+                <option value="gr">gr</option>
+                <option value="pz">pz</option>
+                <option value="tz">tz</option>
+                <option value="cda">cda</option>
+                <option value="cdita">cdita</option>
+                </select>
+            </p>
+            <p><input type="submit" class="btn btn-primary btn-block" value="Agregar"></p>
+            </form>
+        </div>
+        </div>
+    </div>
+</main>
 {% endblock %}

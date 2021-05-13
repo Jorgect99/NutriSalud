@@ -104,5 +104,9 @@ class GERForm(forms.ModelForm):
 
         return ger
 
+class Food_GroupForm(forms.ModelForm):
 
+    class Meta:
+        model = Food_Group
+        fields = ["food_group", "food", "amount", "unit"]
 

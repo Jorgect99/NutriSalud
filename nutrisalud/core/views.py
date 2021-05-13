@@ -4,8 +4,8 @@ from registration.decorators import unauthenticated_user, allow_users, admin_onl
 
 from django.contrib.auth.models import User
 
-from .models import IMC, PesoCorregido, GER
-from .forms import IMCForm, PesoCorregidoForm, GERForm
+from .models import IMC, PesoCorregido, GER, Food_Group
+from .forms import IMCForm, PesoCorregidoForm, GERForm, Food_GroupForm
 
 # Create your views here.
 
@@ -78,7 +78,22 @@ def ger(request):
 @login_required(login_url='login')
 @allow_users(allowed_roles=['admin'])    
 def gruposNutricionales(request):
+    context = {}
+    form = Food_GroupForm()
+    if request.method == 'POST':
+        form = Food_GroupForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('lista_grupo_nutricional')
+    context = {'form':form}
     return render(request, 'core/formulas/gruposnutricionales.html')
+
+@login_required(login_url='login')
+@allow_users(allowed_roles=['admin'])
+def lista_gruposNutricionales(request):  
+    lista_gruposNutricionales = Food_Group.objects.all()
+    context = {'lista_gruposNutricionales':lista_gruposNutricionales}
+    return render(request, 'core/lista_gruposNutricionales.html', context)
 
 @login_required(login_url='login')
 @allow_users(allowed_roles=['admin'])    
