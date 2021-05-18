@@ -110,3 +110,21 @@ class Food_GroupForm(forms.ModelForm):
         model = Food_Group
         fields = ["food_group", "food", "amount", "unit"]
 
+class DietForm(forms.ModelForm):
+    client = forms.ModelChoiceField(queryset=Profile.objects.filter(user__groups__name='cliente'), label='Cliente', widget=forms.Select(attrs={
+        'class': 'form-control select2'
+    }))
+    
+    def __init__(self,*args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field in self.fields:
+            if field == 'client':
+                continue
+            self.fields[field].widget.attrs['class'] = 'form-control'
+            
+            self.fields[field].initial = 0
+
+    class Meta:
+        model = Dieta
+        exclude = ["created"]
+

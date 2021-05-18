@@ -47,3 +47,36 @@ class Food_Group(models.Model):
 
     class Meta:
         ordering = ['-created']
+
+class Dieta(models.Model):
+
+    client = models.ForeignKey(Profile, on_delete = models.CASCADE, related_name='dieta')
+    vegetables = models.PositiveSmallIntegerField(verbose_name = "Verduras")
+    fruits = models.PositiveSmallIntegerField(verbose_name = "Frutas")
+    skim_milk = models.PositiveSmallIntegerField(verbose_name = "Leche descremada")
+    low_fat_milk = models.PositiveSmallIntegerField(verbose_name = "Leche semidescremada")
+    cereals_and_tubers_s = models.PositiveSmallIntegerField(verbose_name = "Cereales y Tuberculos (s/g)")
+    cereals_and_tubers_c = models.PositiveSmallIntegerField(verbose_name = "Cereales y Tuberculos (c/g)")
+    legumes = models.PositiveSmallIntegerField(verbose_name = "Leguminosas")
+    whole_milk = models.PositiveSmallIntegerField(verbose_name = "Leche entera")
+    sugars_s = models.PositiveSmallIntegerField(verbose_name = "Azucares s/g")
+    sugars_c = models.PositiveSmallIntegerField(verbose_name = "Azucares c/g")
+    protein_mbg = models.PositiveSmallIntegerField(verbose_name = "Proteinas AOA mbg")
+    protein_bg = models.PositiveSmallIntegerField(verbose_name = "Proteinas AOA bg")
+    oils_and_fats_s = models.PositiveSmallIntegerField(verbose_name = "Aceites y grasas s/p")
+    oils_and_fats_c = models.PositiveSmallIntegerField(verbose_name = "Aceites y grasas c/p")
+    protein_mg = models.PositiveSmallIntegerField(verbose_name = "Proteinas AOA mg")
+    protein_ag = models.PositiveSmallIntegerField(verbose_name = "Proteinas AOA ag")
+
+    kcal_carbohidratos = models.FloatField(default=0 , verbose_name = "Kcal Carbohidratos")
+    kcal_proteinas = models.FloatField(default=0 , verbose_name = "Kcal Proteinas")
+    kcal_lipidos = models.FloatField(default=0 , verbose_name = "Kcal Lipidos")
+    distribucion_carbohidratos = models.FloatField(default=0 , verbose_name = "Distribucion Carbohidratos")
+    distribucion_proteinas = models.FloatField(default=0 , verbose_name = "Distribucion Proteinas")
+    distribucion_lipidos = models.FloatField(default=0 , verbose_name = "Distribucion Lipidos")
+    kcal_total = models.FloatField(default=0 , verbose_name = "Kcal TOTAL")
+
+    created = models.DateTimeField(auto_now_add=True, verbose_name = "Fecha de Agregado")
+
+    class Meta:
+        ordering = ['-created']

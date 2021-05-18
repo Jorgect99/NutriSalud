@@ -14,6 +14,9 @@ urlpatterns = [
     path('formula/lista-imc/delete/<int:imc_id>', views.eliminarCalculoIMC, name="eliminar_calculo_imc"),
     path('formula/lista-pesocorregido', views.lista_pesocorregido, name="lista_pesocorregido"),
     path('formula/lista-ger', views.lista_ger, name="lista_ger"),
+    path('formula/lista-dieta', views.lista_dieta, name="lista_dieta"),
+    path('formula/lista-dieta/delete/<int:dieta_id>', views.eliminarCalculoDieta, name="eliminar_calculo_dieta"),
+    path('formula/lista-dieta/edit/<int:dieta_id>', views.editarCalculoDieta, name="editar_calculo_dieta"),
 
     path('formula/grupos-nutri', views.gruposNutricionales, name="grupos-nutri"),
     path('formula/lista-grupos-nutri', views.lista_gruposNutricionales, name="lista_grupo_nutricional"),

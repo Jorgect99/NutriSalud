@@ -6,7 +6,6 @@
   <link href="{% static '/lib/select2-4.0.13/css/select2.css' %}" rel="stylesheet"/>
   <link href="{% static '/lib/select2-4.0.13/css/select2-bootstrap4.min.css' %}" rel="stylesheet"/>
   <script src="{% static '/lib/select2-4.0.13/js/select2.js' %}"></script>
-  
 {% endblock %}
 {% block content %}
 <strong>Dieta</strong>
@@ -17,30 +16,33 @@
                 <form action="" method="post">{% csrf_token %}
                 <h3 class="mb-4">Dieta</h3>
                 {{ form.errors }}
-                 
+                <p>
+                    <label>Cliente:</label>
+                    {{ form.client }}
+                </p>
                 <div class="row">
                     <div class="col-md-3">
                         <p>
                             <label>Verduras:</label>
-                            <input type="number" name="vegetables" id="id_vegetables" class="form-control" min="0" value="0">
+                            {{ form.vegetables }}
                         </p>
                     </div>
                     <div class="col-md-3">
                         <p>
                             <label>Frutas:</label>
-                            <input type="number" name="fruits" id="id_fruits" class="form-control" min="0" value="0">
+                            {{ form.fruits }}
                         </p>
                     </div>
                     <div class="col-md-3">
                         <p>
                             <label>Leche descremada:</label>
-                            <input type="number" name="skim_milk" id="id_skim_milk" class="form-control" min="0" value="0">
+                            {{ form.skim_milk }}
                         </p>
                     </div>
                     <div class="col-md-3">
                         <p>
                             <label>Leche semidescremada:</label>
-                            <input type="number" name="low_fat_milk" id="id_low_fat_milk" class="form-control" min="0" value="0">
+                            {{ form.low_fat_milk }}
                         </p>
                     </div>
                 </div>
@@ -48,25 +50,25 @@
                     <div class="col-md-3">
                         <p>
                             <label>Cereales y Tuberculos (s/g):</label>
-                            <input type="number" name="cereals_and_tubers_s" id="id_cereals_and_tubers_s" class="form-control" min="0" value="0">
+                            {{ form.cereals_and_tubers_s }}
                         </p>
                     </div>
                     <div class="col-md-3">
                         <p>
                             <label>Cereales y Tuberculos (c/g):</label>
-                            <input type="number" name="cereals_and_tubers_c" id="id_cereals_and_tubers_c" class="form-control" min="0" value="0">
+                            {{ form.cereals_and_tubers_c }}
                         </p>
                     </div>
                     <div class="col-md-3">
                         <p>
                             <label>Leguminosas:</label>
-                            <input type="number" name="legumes" id="id_legumes" class="form-control" min="0" value="0">
+                            {{ form.legumes }}
                         </p>
                     </div>
                     <div class="col-md-3">
                         <p>
                             <label>Leche entera:</label>
-                            <input type="number" name="whole_milk" id="id_whole_milk" class="form-control" min="0" value="0">
+                            {{ form.whole_milk }}
                         </p>
                     </div>
                 </div>
@@ -74,25 +76,25 @@
                     <div class="col-md-3">
                         <p>
                             <label>Azucares s/g:</label>
-                            <input type="number" name="sugars_s" id="id_sugars_s" class="form-control" min="0" value="0">
+                            {{ form.sugars_s }}
                         </p>
                     </div>
                     <div class="col-md-3">
                         <p>
                             <label>Azucares c/g:</label>
-                            <input type="number" name="sugars_c" id="id_sugars_c" class="form-control" min="0" value="0">
+                            {{ form.sugars_c }}
                         </p>
                     </div>
                     <div class="col-md-3">
                         <p>
                             <label>Proteinas AOA mbg:</label>
-                            <input type="number" name="protein_mbg" id="id_protein_mbg" class="form-control" min="0" value="0">
+                            {{ form.protein_mbg }}
                         </p>
                     </div>
                     <div class="col-md-3">
                         <p>
                             <label>Proteinas AOA bg:</label>
-                            <input type="number" name="protein_bg" id="id_protein_bg" class="form-control" min="0" value="0">
+                            {{ form.protein_bg }}
                         </p>
                     </div>
                 </div>
@@ -100,25 +102,25 @@
                     <div class="col-md-3">
                         <p>
                             <label>Aceites y grasas s/p:</label>
-                            <input type="number" name="oils_and_fats_s" id="id_oils_and_fats_s" class="form-control" min="0" value="0">
+                            {{ form.oils_and_fats_s }}
                         </p>
                     </div>
                     <div class="col-md-3">
                         <p>
                             <label>Aceites y grasas c/p:</label>
-                            <input type="number" name="oils_and_fats_c" id="id_oils_and_fats_c" class="form-control" min="0" value="0">
+                            {{ form.oils_and_fats_c }}
                         </p>
                     </div>
                     <div class="col-md-3">
                         <p>
                             <label>Proteinas AOA mg:</label>
-                            <input type="number" name="protein_mg" id="id_protein_mg" class="form-control" min="0" value="0">
+                            {{ form.protein_mg }}
                         </p>
                     </div>
                     <div class="col-md-3">
                         <p>
                             <label>Proteinas AOA ag:</label>
-                            <input type="number" name="protein_ag" id="id_protein_ag" class="form-control"  min="0" value="0">
+                            {{ form.protein_ag }}    
                         </p>
                     </div>
                 </div>
@@ -127,9 +129,10 @@
                     <tr>
                         <td>
                             <p class="text-center">
-                                <label>Kcal Carbohidratos</label>
+                                <label>Kcal Carbohidratos:</label>
                             </p>
                             <p class="text-center">
+                                <input type="hidden" name="kcal_carbohidratos" id="id_kcal_carbohidratos">
                                 <label id="kcal_carbohidratos"></label>
                             </p>
                         </td>
@@ -138,6 +141,7 @@
                                 <label>Kcal Proteinas:</label>
                             </p>
                             <p class="text-center">
+                                <input type="hidden" name="kcal_proteinas" id="id_kcal_proteinas">
                                 <label id="kcal_proteinas"></label>
                             </p>
                         </td>
@@ -146,6 +150,7 @@
                                 <label>Kcal Lipidos:</label>
                             </p>
                             <p class="text-center">
+                                <input type="hidden" name="kcal_lipidos" id="id_kcal_lipidos">
                                 <label id="kcal_lipidos"></label>
                             </p>
                         </td>
@@ -153,9 +158,10 @@
                     <tr>
                         <td>
                             <p class="text-center">
-                                <label class="text-center">Distribucion Carbohidratos</label>
+                                <label class="text-center">Distribucion Carbohidratos:</label>
                             </p>
                             <p class="text-center">
+                                <input type="hidden" name="distribucion_carbohidratos" id="id_distribucion_carbohidratos">
                                 <label id="distribucion_carbohidratos"></label>
                             </p>
                         </td>
@@ -164,6 +170,7 @@
                                 <label>Distribucion Proteinas:</label>
                             </p>
                             <p class="text-center">
+                                <input type="hidden" name="distribucion_proteinas" id="id_distribucion_proteinas">
                                 <label id="distribucion_proteinas"></label>
                             </p>
                         </td>
@@ -172,6 +179,7 @@
                                 <label>Distribucion Lipidos:</label>
                             </p>
                             <p class="text-center">
+                                <input type="hidden" name="distribucion_lipidos" id="id_distribucion_lipidos">
                                 <label id="distribucion_lipidos"></label>
                             </p>
                         </td>
@@ -182,11 +190,12 @@
                             <label class="control-label h3">Kcal TOTAL:</label>
                         </p>
                         <p class="text-center h1">
+                            <input type="hidden" name="kcal_total" id="id_kcal_total">
                             <label id="kcal_total"></label>
                         </p>
                     </div>
                 </div>
-                <p></p><input type="submit" class="btn btn-primary btn-block" value="Agregar"></p>
+                <p></p><input type="submit" class="btn btn-primary btn-block" value="{{ action }}"></p>
                 </form>
             </div>
         </div>
@@ -198,51 +207,72 @@
         theme:'bootstrap4'
         });
     });
+   
+    function calcular(){
+        var totalg_carbohydrates = (Number($("#id_vegetables").val()) * 4) + (Number($("#id_fruits").val()) * 15) + 
+                                (Number($("#id_cereals_and_tubers_s").val()) * 15) + (Number($("#id_cereals_and_tubers_c").val()) * 15) + 
+                                (Number($("#id_legumes").val()) * 20) + (Number($("#id_protein_mbg").val()) * 0) + 
+                                (Number($("#id_protein_bg").val()) * 0) + (Number($("#id_protein_mg").val()) * 0) + 
+                                (Number($("#id_protein_ag").val()) * 0) + (Number($("#id_skim_milk").val()) * 12) + 
+                                (Number($("#id_low_fat_milk").val()) * 12) + (Number($("#id_whole_milk").val()) * 12) + 
+                                (Number($("#id_oils_and_fats_c").val()) * 3) + (Number($("#id_oils_and_fats_s").val()) * 0) + 
+                                (Number($("#id_sugars_c").val()) * 10) + (Number($("#id_sugars_s").val()) * 10);
+        
+        var totalg_protein = (Number($("#id_vegetables").val()) * 2) + (Number($("#id_fruits").val()) * 0) + 
+                                (Number($("#id_cereals_and_tubers_s").val()) * 2) + (Number($("#id_cereals_and_tubers_c").val()) * 2) + 
+                                (Number($("#id_legumes").val()) * 8) + (Number($("#id_protein_mbg").val()) * 7) + 
+                                (Number($("#id_protein_bg").val()) * 7) + (Number($("#id_protein_mg").val()) * 7) + 
+                                (Number($("#id_protein_ag").val()) * 7) + (Number($("#id_skim_milk").val()) * 9) + 
+                                (Number($("#id_low_fat_milk").val()) * 9) + (Number($("#id_whole_milk").val()) * 9) + 
+                                (Number($("#id_oils_and_fats_c").val()) * 3) + (Number($("#id_oils_and_fats_s").val()) * 0) + 
+                                (Number($("#id_sugars_c").val()) * 0) + (Number($("#id_sugars_s").val()) * 0);
+        
+        var totalg_lipids = (Number($("#id_vegetables").val()) * 0) + (Number($("#id_fruits").val()) * 0) + 
+                                (Number($("#id_cereals_and_tubers_s").val()) * 0) + (Number($("#id_cereals_and_tubers_c").val()) * 5) + 
+                                (Number($("#id_legumes").val()) * 1) + (Number($("#id_protein_mbg").val()) * 1) + 
+                                (Number($("#id_protein_bg").val()) * 3) + (Number($("#id_protein_mg").val()) * 5) + 
+                                (Number($("#id_protein_ag").val()) * 8) + (Number($("#id_skim_milk").val()) * 2) + 
+                                (Number($("#id_low_fat_milk").val()) * 4) + (Number($("#id_whole_milk").val()) * 8) + 
+                                (Number($("#id_oils_and_fats_c").val()) * 5) + (Number($("#id_oils_and_fats_s").val()) * 5) + 
+                                (Number($("#id_sugars_c").val()) * 5) + (Number($("#id_sugars_s").val()) * 0);
+
+        var kcal_carbohidratos = totalg_carbohydrates * 4;
+        var kcal_proteinas = totalg_protein * 4;
+        var kcal_lipidos = totalg_lipids * 9;
+        var kcal_total = kcal_carbohidratos + kcal_proteinas + kcal_lipidos;  
+
+        if (kcal_total !== 0){
+            $("#kcal_carbohidratos").text(kcal_carbohidratos);
+            $("#kcal_proteinas").text(kcal_proteinas);
+            $("#kcal_lipidos").text(kcal_lipidos);
+            $("#distribucion_carbohidratos").text(((kcal_carbohidratos*100)/kcal_total).toFixed(2));
+            $("#distribucion_proteinas").text(((kcal_proteinas*100)/kcal_total).toFixed(2));
+            $("#distribucion_lipidos").text(((kcal_lipidos*100)/kcal_total).toFixed(2));
+
+            $("#id_kcal_carbohidratos").val(kcal_carbohidratos);
+            $("#id_kcal_proteinas").val(kcal_proteinas);
+            $("#id_kcal_lipidos").val(kcal_lipidos);
+            $("#id_distribucion_carbohidratos").val(((kcal_carbohidratos*100)/kcal_total).toFixed(2));
+            $("#id_distribucion_proteinas").val(((kcal_proteinas*100)/kcal_total).toFixed(2));
+            $("#id_distribucion_lipidos").val(((kcal_lipidos*100)/kcal_total).toFixed(2));
+
+            $("#kcal_total").text(kcal_carbohidratos + kcal_proteinas + kcal_lipidos);
+            $("#id_kcal_total").val(kcal_carbohidratos + kcal_proteinas + kcal_lipidos);
+        } else {
+            $("#kcal_carbohidratos").text(0);
+            $("#kcal_proteinas").text(0);
+            $("#kcal_lipidos").text(0);
+            $("#distribucion_carbohidratos").text(0);
+            $("#distribucion_proteinas").text(0);
+            $("#distribucion_lipidos").text(0);
+
+            $("#kcal_total").text(kcal_carbohidratos + kcal_proteinas + kcal_lipidos);
+        }
+    }
+
     $(function(){
-		$("input").change(function(){
-            var totalg_carbohydrates = (Number($("#id_vegetables").val()) * 4) + (Number($("#id_fruits").val()) * 15) + 
-                                    (Number($("#id_cereals_and_tubers_s").val()) * 15) + (Number($("#id_cereals_and_tubers_c").val()) * 15) + 
-                                    (Number($("#id_legumes").val()) * 20) + (Number($("#id_protein_mbg").val()) * 0) + 
-                                    (Number($("#id_protein_bg").val()) * 0) + (Number($("#id_protein_mg").val()) * 0) + 
-                                    (Number($("#id_protein_ag").val()) * 0) + (Number($("#id_skim_milk").val()) * 12) + 
-                                    (Number($("#id_low_fat_milk").val()) * 12) + (Number($("#id_whole_milk").val()) * 12) + 
-                                    (Number($("#id_oils_and_fats_c").val()) * 3) + (Number($("#id_oils_and_fats_s").val()) * 0) + 
-                                    (Number($("#id_sugars_c").val()) * 10) + (Number($("#id_sugars_s").val()) * 10);
-            
-            var totalg_protein = (Number($("#id_vegetables").val()) * 2) + (Number($("#id_fruits").val()) * 0) + 
-                                    (Number($("#id_cereals_and_tubers_s").val()) * 2) + (Number($("#id_cereals_and_tubers_c").val()) * 2) + 
-                                    (Number($("#id_legumes").val()) * 8) + (Number($("#id_protein_mbg").val()) * 7) + 
-                                    (Number($("#id_protein_bg").val()) * 7) + (Number($("#id_protein_mg").val()) * 7) + 
-                                    (Number($("#id_protein_ag").val()) * 7) + (Number($("#id_skim_milk").val()) * 9) + 
-                                    (Number($("#id_low_fat_milk").val()) * 9) + (Number($("#id_whole_milk").val()) * 9) + 
-                                    (Number($("#id_oils_and_fats_c").val()) * 3) + (Number($("#id_oils_and_fats_s").val()) * 0) + 
-                                    (Number($("#id_sugars_c").val()) * 0) + (Number($("#id_sugars_s").val()) * 0);
-            
-            var totalg_lipids = (Number($("#id_vegetables").val()) * 0) + (Number($("#id_fruits").val()) * 0) + 
-                                    (Number($("#id_cereals_and_tubers_s").val()) * 0) + (Number($("#id_cereals_and_tubers_c").val()) * 5) + 
-                                    (Number($("#id_legumes").val()) * 1) + (Number($("#id_protein_mbg").val()) * 1) + 
-                                    (Number($("#id_protein_bg").val()) * 3) + (Number($("#id_protein_mg").val()) * 5) + 
-                                    (Number($("#id_protein_ag").val()) * 8) + (Number($("#id_skim_milk").val()) * 2) + 
-                                    (Number($("#id_low_fat_milk").val()) * 4) + (Number($("#id_whole_milk").val()) * 8) + 
-                                    (Number($("#id_oils_and_fats_c").val()) * 5) + (Number($("#id_oils_and_fats_s").val()) * 5) + 
-                                    (Number($("#id_sugars_c").val()) * 5) + (Number($("#id_sugars_s").val()) * 0);
-
-            var kcal_carbohidratos = totalg_carbohydrates * 4;
-            var kcal_proteinas = totalg_protein * 4;
-            var kcal_lipidos = totalg_lipids * 9;
-            var kcal_total = kcal_carbohidratos + kcal_proteinas + kcal_lipidos;  
-
-			if (totalg_carbohydrates){
-				$("#kcal_carbohidratos").text(kcal_carbohidratos);
-				$("#kcal_proteinas").text(kcal_proteinas);
-				$("#kcal_lipidos").text(kcal_lipidos);
-				$("#distribucion_carbohidratos").text(((kcal_carbohidratos*100)/kcal_total).toFixed(2));
-				$("#distribucion_proteinas").text(((kcal_proteinas*100)/kcal_total).toFixed(2));
-				$("#distribucion_lipidos").text(((kcal_lipidos*100)/kcal_total).toFixed(2));
-
-				$("#kcal_total").text(kcal_carbohidratos + kcal_proteinas + kcal_lipidos);
-			}
-		});
+        calcular();
+		$("input").change(calcular);
 	});
 </script>
 {% endblock %}

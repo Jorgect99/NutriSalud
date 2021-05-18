@@ -4,8 +4,8 @@ from registration.decorators import unauthenticated_user, allow_users, admin_onl
 
 from django.contrib.auth.models import User
 
-from .models import IMC, PesoCorregido, GER, Food_Group
-from .forms import IMCForm, PesoCorregidoForm, GERForm, Food_GroupForm
+from .models import IMC, PesoCorregido, GER, Food_Group, Dieta
+from .forms import IMCForm, PesoCorregidoForm, GERForm, Food_GroupForm, DietForm
 
 # Create your views here.
 
@@ -98,7 +98,44 @@ def lista_gruposNutricionales(request):
 @login_required(login_url='login')
 @allow_users(allowed_roles=['admin'])    
 def dieta(request):
-    return render(request, 'core/formulas/dietas.html')
+    context = {}
+    form = DietForm()
+    if request.method == 'POST':
+        form = DietForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('lista_dieta')
+    context = {'form':form, "action":"Agregar"}
+    return render(request, 'core/formulas/dietas.html', context)
+
+@login_required(login_url='login')
+@allow_users(allowed_roles=['admin'])
+def lista_dieta(request):  
+    lista_dieta = Dieta.objects.all()
+    context = {'lista_dieta':lista_dieta}
+    return render(request, 'core/lista_dieta.html', context)
+
+@login_required(login_url='login')
+@allow_users(allowed_roles=['admin'])
+def editarCalculoDieta(request, dieta_id):
+    context = {}
+    dieta = Dieta.objects.get(id=dieta_id)
+    form = DietForm(instance=dieta)
+    if request.method == 'POST':
+        form = DietForm(request.POST, instance=dieta)
+        if form.is_valid():
+            form.save()
+            return redirect('lista_dieta')
+    context = {"form":form, "action":"Editar"}
+    return render(request, 'core/formulas/dietas.html', context)
+
+@login_required(login_url='login')
+@allow_users(allowed_roles=['admin'])
+def eliminarCalculoDieta(request, dieta_id):
+    dieta = Dieta.objects.get(id=dieta_id)
+    dieta.delete()
+    return redirect('lista_dieta')
+
 
 @login_required(login_url='login')
 @allow_users(allowed_roles=['admin'])
