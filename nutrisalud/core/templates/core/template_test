@@ -1,0 +1,104 @@
+<div class="row">
+    <div class="col-md-3 border border-primary border-right-0 rounded">
+        <p>
+            <label>Verduras:</label>
+            <input type="number" name="size" id="id_size" class="form-control" step="0.01" min="0">
+        </p>
+    </div>
+    <div class="col-md-3 border border-primary border-left-0 rounded">
+        <p>
+            <label>Frutas:</label>
+            <input type="number" name="size" id="id_size" class="form-control" step="0.01" min="0">
+        </p>
+    </div>
+    <div class="col-md-3 border border-secondary border-right-0 rounded">
+        <p>
+            <label>Leche descremada:</label>
+            <input type="number" name="size" id="id_size" class="form-control" step="0.01" min="0">
+        </p>
+    </div>
+    <div class="col-md-3 border border-secondary border-left-0 border-bottom-0 rounded">
+        <p>
+            <label>Leche semidescremada:</label>
+            <input type="number" name="size" id="id_size" class="form-control" step="0.01" min="0">
+        </p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-3 border border-danger border-right-0 rounded">
+        <p>
+            <label>Cereales y Tuberculos (s/g):</label>
+            <input type="number" name="size" id="id_size" class="form-control" step="0.01" min="0">
+        </p>
+    </div>
+    <div class="col-md-3 border border-danger border-left-0 rounded">
+        <p>
+            <label>Cereales y Tuberculos (c/g):</label>
+            <input type="number" name="size" id="id_size" class="form-control" step="0.01" min="0">
+        </p>
+    </div>
+    <div class="col-md-3 border border-success rounded">
+        <p>
+            <label>Leguminosas:</label>
+            <input type="number" name="size" id="id_size" class="form-control" step="0.01" min="0">
+        </p>
+    </div>
+    <div class="col-md-3 border border-secondary border-top-0 rounded">
+        <p>
+            <label>Leche entera:</label>
+            <input type="number" name="size" id="id_size" class="form-control" step="0.01" min="0">
+        </p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-3 border border-warning border-right-0 rounded">
+        <p>
+            <label>Azucares s/g:</label>
+            <input type="number" name="size" id="id_size" class="form-control" step="0.01" min="0">
+        </p>
+    </div>
+    <div class="col-md-3 border border-warning border-left-0 rounded">
+        <p>
+            <label>Azucares c/g:</label>
+            <input type="number" name="size" id="id_size" class="form-control" step="0.01" min="0">
+        </p>
+    </div>
+    <div class="col-md-3 border border-dark border-right-0 border-bottom-0 rounded">
+        <p>
+            <label>Proteinas AOA mbg:</label>
+            <input type="number" name="size" id="id_size" class="form-control" step="0.01" min="0">
+        </p>
+    </div>
+    <div class="col-md-3 border border-dark border-left-0 border-bottom-0 rounded">
+        <p>
+            <label>Proteinas AOA bg:</label>
+            <input type="number" name="size" id="id_size" class="form-control" step="0.01" min="0">
+        </p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-3 border border-dark border-right-0 rounded">
+        <p>
+            <label>Aceites y grasas s/p:</label>
+            <input type="number" name="size" id="id_size" class="form-control" step="0.01" min="0">
+        </p>
+    </div>
+    <div class="col-md-3 border border-dark border-left-0 rounded">
+        <p>
+            <label>Aceites y grasas c/p:</label>
+            <input type="number" name="size" id="id_size" class="form-control" step="0.01" min="0">
+        </p>
+    </div>
+    <div class="col-md-3 border border-dark border-right-0 border-top-0 rounded">
+        <p>
+            <label>Proteinas AOA mg:</label>
+            <input type="number" name="size" id="id_size" class="form-control" step="0.01" min="0">
+        </p>
+    </div>
+    <div class="col-md-3 border border-dark border-left-0 border-top-0 rounded">
+        <p>
+            <label>Proteinas AOA ag:</label>
+            <input type="number" name="size" id="id_size" class="form-control" step="0.01" min="0">
+        </p>
+    </div>
+</div>
