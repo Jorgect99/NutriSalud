@@ -157,3 +157,8 @@ def lista_ger(request):
     lista_ger = GER.objects.all()
     context = {'lista_ger':lista_ger}
     return render(request, 'core/lista_ger.html', context)
+
+@login_required(login_url='login')
+@admin_only
+def calendario(request):
+    return render(request, 'core/calendario.html')

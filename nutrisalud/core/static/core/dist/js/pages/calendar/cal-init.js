@@ -61,45 +61,22 @@
             var y = date.getFullYear();
             var form = '';
             var today = new Date($.now());
-
+            
             var defaultEvents = [{
-                    title: 'Meeting #3',
-                    start: new Date($.now() + 506800000),
-                    className: 'bg-info'
-                }, {
-                    title: 'Submission #1',
-                    start: today,
-                    end: today,
-                    className: 'bg-danger'
-                }, {
-                    title: 'Meetup #6',
-                    start: new Date($.now() + 848000000),
-                    className: 'bg-info'
-                }, {
-                    title: 'Seminar #4',
-                    start: new Date($.now() - 1099000000),
-                    end: new Date($.now() - 919000000),
-                    className: 'bg-warning'
-                }, {
-                    title: 'Event Conf.',
-                    start: new Date($.now() - 1199000000),
-                    end: new Date($.now() - 1199000000),
-                    className: 'bg-purple'
-                }, {
-                    title: 'Meeting #5',
-                    start: new Date($.now() - 399000000),
-                    end: new Date($.now() - 219000000),
-                    className: 'bg-info'
-                },
-                {
-                    title: 'Submission #2',
-                    start: new Date($.now() + 868000000),
-                    className: 'bg-danger'
-                }, {
-                    title: 'Seminar #5',
-                    start: new Date($.now() + 348000000),
-                    className: 'bg-success'
-                }
+                title: 'Jorge Cabral',
+                start: new Date('2021-05-05 15:30:00'),// 1 Jan 2011, 00:00:00,
+                className: 'bg-info'
+            }, {
+                title: 'Submission #2',
+                start: today,
+                end: today,
+                className: 'bg-danger'
+            },{
+                title: 'Gabriel Banda',
+                start: new Date('2021-05-06 15:30:00'),
+                className: 'bg-danger'
+            },
+             
             ];
 
             var $this = this;
@@ -118,7 +95,7 @@
                 },
                 events: defaultEvents,
                 editable: true,
-                droppable: true, // this allows things to be dropped onto the calendar !!!
+                droppable: false, // this allows things to be dropped onto the calendar !!!
                 eventLimit: true, // allow "more" link when too many events
                 selectable: true,
                 drop: function(date) { $this.onDrop($(this), date); },

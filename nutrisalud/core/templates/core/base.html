@@ -101,7 +101,7 @@
                             </span></a>
                         </li>
                         
-                        <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="app-calendar.html"
+                        <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="{% url 'calendario' %}"
                                 aria-expanded="false"><i data-feather="calendar" class="feather-icon"></i><span
                                     class="hide-menu">Calendario</span></a>
                         </li>
@@ -213,6 +213,7 @@
     <script src="{% static 'core/assets/extra-libs/jvector/jquery-jvectormap-2.0.2.min.js' %}"></script>
     <script src="{% static 'core/assets/extra-libs/jvector/jquery-jvectormap-world-mill-en.js' %}"></script>
     <script src="{% static 'core/dist/js/pages/dashboards/dashboard1.min.js' %}"></script>
+    
     {% block js %}
     {% endblock %}
     
