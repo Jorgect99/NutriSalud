@@ -45,5 +45,16 @@
     <script src="{% static 'core/assets/libs/moment/min/moment.min.js' %}"></script>
     <script src="{% static 'core/assets/libs/fullcalendar/dist/fullcalendar.min.js' %}"></script>
     <script src="{% static 'core/dist/js/pages/calendar/cal-init.js' %}"></script>
-
+    <script>
+        //initializing CalendarApp
+        $(window).on('load', function() {
+            var dates = [{% for cita in lista_citas %}
+                            {title:'{{ cita.client.first_name }} {{ cita.client.last_name }}',
+                            start:new Date('{{ cita.date|date:'Y-m-d' }} {{ cita.hour|date:'H:i:s' }}'),
+                            end:new Date('{{ cita.date|date:'Y-m-d' }} {{ cita.endhour|date:'H:i:s' }}'),
+                            className: 'bg-info'},
+                        {% endfor %}]
+            $.CalendarApp.init(dates)
+        })
+    </script>
 {% endblock %}

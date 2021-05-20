@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 
 from .models import IMC, PesoCorregido, GER, Food_Group, Dieta
 from .forms import IMCForm, PesoCorregidoForm, GERForm, Food_GroupForm, DietForm
+from citas.models import *
 
 # Create your views here.
 
@@ -161,4 +162,8 @@ def lista_ger(request):
 @login_required(login_url='login')
 @admin_only
 def calendario(request):
-    return render(request, 'core/calendario.html')
+    context = {}
+    lista_citas = Appointment.objects.all()
+    context = {'lista_citas':lista_citas}
+
+    return render(request, 'core/calendario.html', context)

@@ -52,7 +52,7 @@
             });
         }
     /* Initializing */
-    CalendarApp.prototype.init = function() {
+    CalendarApp.prototype.init = function(dates) {
             this.enableDrag();
             /*  Initialize the calendar  */
             var date = new Date();
@@ -61,23 +61,6 @@
             var y = date.getFullYear();
             var form = '';
             var today = new Date($.now());
-            
-            var defaultEvents = [{
-                title: 'Jorge Cabral',
-                start: new Date('2021-05-05 15:30:00'),// 1 Jan 2011, 00:00:00,
-                className: 'bg-info'
-            }, {
-                title: 'Submission #2',
-                start: today,
-                end: today,
-                className: 'bg-danger'
-            },{
-                title: 'Gabriel Banda',
-                start: new Date('2021-05-06 15:30:00'),
-                className: 'bg-danger'
-            },
-             
-            ];
 
             var $this = this;
             $this.$calendarObj = $this.$calendar.fullCalendar({
@@ -93,8 +76,8 @@
                     center: 'title',
                     right: 'month,agendaWeek,agendaDay'
                 },
-                events: defaultEvents,
-                editable: true,
+                events: dates,
+                editable: false,
                 droppable: false, // this allows things to be dropped onto the calendar !!!
                 eventLimit: true, // allow "more" link when too many events
                 selectable: true,
@@ -109,10 +92,4 @@
         //init CalendarApp
         $.CalendarApp = new CalendarApp, $.CalendarApp.Constructor = CalendarApp
 
-}(window.jQuery),
-
-//initializing CalendarApp
-$(window).on('load', function() {
-
-    $.CalendarApp.init()
-});
+}(window.jQuery);
