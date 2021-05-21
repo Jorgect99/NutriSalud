@@ -51,6 +51,24 @@
               <option value="3">Vigoroso</option>
             </select>
           </p>
+          <div class="row">
+            <div class="col-md-6">
+              <p class="text-center">
+                <label class="control-label h3">GER:</label>
+              </p>
+              <p class="text-center h1">
+                  <label id="id_ger"></label>
+              </p>
+            </div>
+            <div class="col-md-6">
+              <p class="text-center">
+                <label class="control-label h3">GET:</label>
+              </p>
+              <p class="text-center h1">
+                  <label id="id_get"></label>
+              </p>
+            </div>
+          </div>
           <p><input type="submit" class="btn btn-primary btn-block" value="Calcular"></p>
         </form>
       </div>
@@ -63,5 +81,44 @@
       theme:'bootstrap4'
     });
   });
+
+  $(function(){
+		$("input").change(function(){
+			var peso = Number($("#id_weight").val());
+			var estatura = Number($("#id_size").val());
+			var edad = Number($("#id_age").val());
+			var genero = document.getElementById("id_gender").value;
+			var estilovida = document.getElementById("id_lifestyle").value;
+			
+      var ger = 0
+      var get = 0 
+      if (genero){
+        if (genero==='1'){
+          ger = (9.99 * peso) + (6.25 * estatura) - (4.92 * edad) + 5
+          $("#id_ger").text((ger).toFixed(2));
+        } else if (genero==='2'){
+          ger = (9.99 * peso) + (6.25 * estatura) - (4.92 * edad) - 161
+          $("#id_ger").text((ger).toFixed(2));
+        }
+      }else{
+        $("#id_ger").text(0);
+      }
+
+      if (estilovida){
+        if (estilovida==='1'){
+          get = ger * 1.545
+          $("#id_get").text((get).toFixed(2));
+        } else if (estilovida==='2'){
+          get = ger * 1.845
+          $("#id_get").text((get).toFixed(2));
+        } else if (estilovida==='3'){
+          get = ger * 2.2
+          $("#id_get").text((get).toFixed(2));
+        }
+      }else{
+        $("#id_get").text(0);
+      }
+		});
+	});
 </script>
 {% endblock %}

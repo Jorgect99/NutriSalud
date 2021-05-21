@@ -31,6 +31,12 @@
             <label>Estatura (m):</label>
             <input type="number" name="height" id="id_height" class="form-control" step="0.01" min="0">
           </p>
+          <p class="text-center">
+            <label class="control-label h3">IMC:</label>
+          </p>
+          <p class="text-center h1">
+            <label id="id_imc"></label>
+          </p>
           <p><input type="submit" class="btn btn-primary btn-block" value="Calcular"></p>
         </form>
       </div>
@@ -43,6 +49,16 @@
       theme:'bootstrap4'
     });
   });
+
+  $(function(){
+		$("input").change(function(){
+			var peso = Number($("#id_weight").val());
+			var altura = Number($("#id_height").val());
+			if (altura){
+				$("#id_imc").text((peso/(altura*altura)).toFixed(2));
+			}
+		});
+	});
 </script>
 
 {% endblock %}
