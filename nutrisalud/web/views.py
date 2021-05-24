@@ -28,11 +28,11 @@ def home(request):
             try:
                 email.send()
                 #Todo salio bien
-                return HttpResponseRedirect('/web/#contact')
+                return HttpResponseRedirect('/web/?ok')
                 #return redirect(reverse('home')+"#contact")
             except:
                 #Algo salio mal
-                return HttpResponseRedirect('/web/#contact')
+                return HttpResponseRedirect('/web/?fail')
                 #return redirect(reverse('home')+"#contact")
 
     return render(request, "web/index.html", {'contact_form':contact_form})

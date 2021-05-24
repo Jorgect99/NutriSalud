@@ -348,7 +348,9 @@
 
           <div class="col-lg-8 mt-5 mt-lg-0">
             {% if 'ok' in request.GET %}
-              <p><b>Su mensaje se envio correctamente.</b></p>
+              <div class="alert alert-success" role="alert">
+                Su mensaje se envio correctamente.
+              </div>
             {% endif %}  
 
             {% if 'fail' in request.GET %}
@@ -374,7 +376,7 @@
                 {{ contact_form.content }}
                 {{ contact_form.content.errors }}
               </div>
-              <div class="text-center"><button type="submit" class="btn btn-primary btn-block py-2">Enviar mensaje</button></div>
+              <div class="text-center"><button id="btnEnviar" type="submit" class="btn btn-primary btn-block py-2">Enviar mensaje</button></div>
             </form>
           </div>
         </div>
@@ -426,5 +428,14 @@
   <script src="{% static 'web/assets/js/main.js' %}"></script>
 
 </body>
-
 </html>
+<script>
+  $(function () {
+    const urlParams = new URLSearchParams(window.location.search);
+    const myParam = urlParams.get('ok');
+    console.log(myParam)
+    if (myParam==='') {
+      window.scrollTo(0,document.body.scrollHeight);
+    }
+  }) 
+</script>
