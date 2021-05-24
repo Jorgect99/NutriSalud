@@ -136,9 +136,9 @@ EMAIL_HOST_PASSWORD = 'e3aa019411dd36'
 EMAIL_PORT = '2525'
 
 # Emails
-if DEBUG:
-    EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
-    EMAIL_FILE_PATH = os.path.join(BASE_DIR, "sent_emails")
-else:
+#if DEBUG:
+#    EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
+#    EMAIL_FILE_PATH = os.path.join(BASE_DIR, "sent_emails")
+#else:
     #Aqui hay que configurar un email real para produccion
-    pass
+#    pass

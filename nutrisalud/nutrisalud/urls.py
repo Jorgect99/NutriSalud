@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
+from web.urls import web_patterns
 
 urlpatterns = [
 
@@ -23,7 +24,7 @@ urlpatterns = [
     path('', include('core.urls')),
     
     #paths web
-    path('', include('web.urls')),
+    path('', include(web_patterns)),
 
     #paths contact
     path('contact/', include('contact.urls')),

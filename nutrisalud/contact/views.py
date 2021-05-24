@@ -13,12 +13,13 @@ def contact(request):
 
         if contact_form.is_valid():
             name = request.POST.get('name', '')
+            subject = request.POST.get('subject', '')
             content = request.POST.get('content', '')
             email = request.POST.get('email', '')
             #Enviamos el correo y redireccionamos
             email = EmailMessage(
                 "NutriSalud: Nuevo mensaje de contacto",
-                "De {} <{}>\n\nEscribio:\n\n{}".format(name, email, content),
+                "De {} <{}>\n{}\n\nEscribio:\n\n{}".format(name, email, subject, content),
                 "no-contestar@inbox.mailtrap.io",
                 ["jorgect99@gmail.com"],
                 reply_to=[email],
@@ -26,9 +27,9 @@ def contact(request):
             try:
                 email.send()
                 #Todo salio bien
-                return redirect(reverse('contact')+"?ok")
+                return redirect(reverse('home')+"?ok")
             except:
                 #Algo salio mal
-                return redirect(reverse('contact')+"?fail")
+                return redirect(reverse('home')+"?fail")
 
-    return render(request, 'contact/contact.html', {'form':contact_form})
+    return render(request, 'web/index.html', {'contact_form':contact_form})

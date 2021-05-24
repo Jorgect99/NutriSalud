@@ -83,12 +83,13 @@
   document.getElementsByName("date")[0].setAttribute('min', today);
   
   $(document).ready(function() {
-  var hr=['08','09','10','11','12','13','14','15','16','17','18','19'];
-  var mi=['00','30'];
-  for( i=0;i<hr.length;i++){
-    $("#id_hour").append('<option val="' + hr[i]  + ':' + mi[0] + '">'+ hr[i] + ':' + mi[0] + '</option>');									
-    $("#id_hour").append('<option val="' + hr[i]  + ':' + mi[1] + '">' + hr[i] + ':' + mi[1] + '</option>');
-  }})
+    var hr=['08','09','10','11','12','13','14','15','16','17','18','19'];
+    var mi=['00','30'];
+    for( i=0;i<hr.length;i++){
+      $("#id_hour").append('<option val="' + hr[i]  + ':' + mi[0] + '">'+ hr[i] + ':' + mi[0] + '</option>');									
+      $("#id_hour").append('<option val="' + hr[i]  + ':' + mi[1] + '">' + hr[i] + ':' + mi[1] + '</option>');
+    }
+  })
 </script>
 {% endblock %}
 

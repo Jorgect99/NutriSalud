@@ -56,7 +56,9 @@
 			var altura = Number($("#id_height").val());
 			if (altura){
 				$("#id_imc").text((peso/(altura*altura)).toFixed(2));
-			}
+			}else{
+        $("#id_imc").text(0);
+      }
 		});
 	});
 </script>
