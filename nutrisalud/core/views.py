@@ -97,6 +97,11 @@ def lista_gruposNutricionales(request):
     return render(request, 'core/lista_gruposNutricionales.html', context)
 
 @login_required(login_url='login')
+@admin_only
+def menu(request):
+    return render(request, 'core/menu.html')
+
+@login_required(login_url='login')
 @allow_users(allowed_roles=['admin'])    
 def dieta(request):
     context = {}

@@ -23,6 +23,23 @@
             {{ form.client }}
           </p>
           <p>
+            <label>Genero:</label>
+            <select class="form-control mr-sm-2" name="gender" id="id_gender">
+              <option selected>Elegir...</option>
+              <option value="1">Masculino</option>
+              <option value="2">Femenino</option>
+            </select>
+          </p>          
+          <p>
+            <label>Estilo de Vida:</label>
+            <select class="form-control mr-sm-2" name="lifestyle" id="id_lifestyle">
+              <option selected>Elegir...</option>
+              <option value="1">Sedentario</option>
+              <option value="2">Activo</option>
+              <option value="3">Vigoroso</option>
+            </select>
+          </p>
+          <p>
             <label>Peso (kg):</label>
             <input type="number" name="weight" id="id_weight" class="form-control" step="0.01" min="0">
           </p>
@@ -33,23 +50,6 @@
           <p>
             <label>Edad (años):</label>
             <input type="number" name="age" id="id_age" class="form-control" min="0">
-          </p>
-          <p>
-            <label>Genero:</label>
-            <select class="form-control mr-sm-2" name="gender" id="id_gender">
-              <option selected>Elegir...</option>
-              <option value="1">Masculino</option>
-              <option value="2">Femenino</option>
-            </select>
-          </p>
-          <p>
-            <label>Estilo de Vida:</label>
-            <select class="form-control mr-sm-2" name="lifestyle" id="id_lifestyle">
-              <option selected>Elegir...</option>
-              <option value="1">Sedentario</option>
-              <option value="2">Activo</option>
-              <option value="3">Vigoroso</option>
-            </select>
           </p>
           <div class="row">
             <div class="col-md-6">

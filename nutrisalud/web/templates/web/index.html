@@ -63,6 +63,9 @@
         <a href="{% url 'signup' %}" class="appointment-btn scrollto">Registrarme</a>
         <a href="{% url 'login' %}" class="appointment-btn scrollto ml-1">Iniciar sesión</a>
       {% else %}
+        {% if request.user.is_superuser %}
+          <a href="{% url 'admindashboard' %}" class="appointment-btn scrollto">Admin</a>
+        {% endif %}
         <a href="{% url 'profile' %}" class="appointment-btn scrollto">Perfil</a>
         <a href="{% url 'logout' %}" class="appointment-btn scrollto ml-1">Salir</a>
       {% endif %}
@@ -164,7 +167,7 @@
 
         <div class="section-title">
           <h2>Servicios</h2>
-          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+          <p></p>
         </div>
 
         <div class="row justify-content-center ">
@@ -180,6 +183,7 @@
             <div class="icon-box">
               <div class="icon"><i class="icofont-male"></i></div>
               <h4><a href="">Consulta presencial </a></h4>
+              <h5 class="text-info" >Proximamente...</h5>
               <p>Si estas en busca de mejorar tu salud, mejorar tu composición corporal y mejorar tu alimentación yo puedo ayudarte, brindándote asesoría nutricional.
                 </p>
             </div>
@@ -189,6 +193,7 @@
             <div class="icon-box">
               <div class="icon"><i class="icofont-tick-mark"></i></div>
               <h4><a href="">Retos</a></h4>
+              <h5 class="text-info" >Proximamente...</h5>
               <p>Reto de 28 días que consta de lo siguiente:
                 Planes de alimentación semanales,  
                 Guia de productos recomendados,
@@ -203,6 +208,7 @@
             <div class="icon-box">
               <div class="icon"><i class="icofont-heart"></i></div>
               <h4><a href="">Programa intensivo de cambio de estilo de vida</a></h4>
+              <h5 class="text-info" >Proximamente...</h5>
               <p>También llamado programa de prevención de diabetes, es actualmente el mejor tratamiento de sobrepeso y obesidad según la evidencia científica disponible. </p>
             </div>
           </div>
@@ -327,7 +333,7 @@
               <div class="address">
                 <i class="icofont-google-map"></i>
                 <h4>Ubicacion:</h4>
-                <p>A108 Adam Street, New York, NY 535022</p>
+                <p>Conasupo 112, Palo Verde, 83280 Hermosillo, Son.</p>
               </div>
 
               <div class="email">
@@ -339,7 +345,7 @@
               <div class="phone">
                 <i class="icofont-phone"></i>
                 <h4>Telefono:</h4>
-                <p>+1 5589 55488 55s</p>
+                <p>+52 662 1271442</p>
               </div>
 
             </div>

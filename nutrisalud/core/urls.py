@@ -20,6 +20,7 @@ urlpatterns = [
 
     path('formula/grupos-nutri', views.gruposNutricionales, name="grupos-nutri"),
     path('formula/lista-grupos-nutri', views.lista_gruposNutricionales, name="lista_grupo_nutricional"),
+    path('formula/menu', views.menu, name="menu"),
     path('formula/dieta', views.dieta, name="dieta"),
 
 

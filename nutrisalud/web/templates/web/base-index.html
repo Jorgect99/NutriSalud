@@ -64,6 +64,9 @@
         <a href="{% url 'signup' %}" class="appointment-btn scrollto">Registrarme</a>
         <a href="{% url 'login' %}" class="appointment-btn scrollto ml-1">Iniciar sesión</a>
       {% else %}
+        {% if request.user.is_superuser %}
+          <a href="{% url 'admindashboard' %}" class="appointment-btn scrollto">Admin</a>
+        {% endif %}
         <a href="{% url 'profile' %}" class="appointment-btn scrollto">Perfil</a>
         <a href="{% url 'logout' %}" class="appointment-btn scrollto ml-1">Salir</a>
       {% endif %}
