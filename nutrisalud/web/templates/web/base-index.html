@@ -54,9 +54,7 @@
       <nav class="nav-menu d-none d-lg-block">
         <ul>
           <li class="active"><a href="{% url 'web:home' %}">Inicio</a></li>
-          <li><a href="{% url 'web:about' %}">Sobre mi</a></li>
-          <li><a href="{% url 'web:services' %}">Servicios</a></li>
-          <li><a href="{% url 'web:contact' %}">Contactame</a></li>
+
         </ul>
       </nav><!-- .nav-menu -->
 
@@ -96,6 +94,8 @@
 
   <!-- Template Main JS File -->
   <script src="{% static 'web/assets/js/main.js' %}"></script>
+  {% block scripts %}
+  {% endblock %}
 
 </body>
 

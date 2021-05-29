@@ -1,4 +1,4 @@
-{% extends 'web/base.html' %}
+{% extends 'web/base-index.html' %}
 
 {% block title %}Citas{% endblock %}
 
@@ -78,6 +78,8 @@
     </div>
   </div>
 </main>
+{% endblock %}
+{% block scripts %}
 <script>
   var today = new Date().toISOString().split('T')[0];
   document.getElementsByName("date")[0].setAttribute('min', today);
@@ -89,7 +91,7 @@
       $("#id_hour").append('<option val="' + hr[i]  + ':' + mi[0] + '">'+ hr[i] + ':' + mi[0] + '</option>');									
       $("#id_hour").append('<option val="' + hr[i]  + ':' + mi[1] + '">' + hr[i] + ':' + mi[1] + '</option>');
     }
-  })
+  });
 </script>
 {% endblock %}
 

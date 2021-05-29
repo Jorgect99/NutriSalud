@@ -41,7 +41,7 @@ def loginPage(request):
                 if user.is_staff:
                     return HttpResponseRedirect('/')
                 else:
-                    return HttpResponseRedirect('/web')
+                    return HttpResponseRedirect('/citas')
 
             else:
                 error = "Login Error"
