@@ -16,6 +16,7 @@
                                     <th>Nombre</th>
                                     <th>Peso Corregido</th>
                                     <th>Fecha</th>
+                                    <th>Accion</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -24,6 +25,10 @@
                                     <td>{{ pesocorregido.client.user.first_name }} {{ pesocorregido.client.user.last_name }}</td>
                                     <td>{{ pesocorregido.corrected_weight|floatformat:-2 }}</td>
                                     <td>{{ pesocorregido.created }}</td>
+                                    <td>
+                                        <!--<a class="btn btn-warning" href="{% url 'eliminar_calculo_pesocorregido' pesocorregido.id %}"><i class="fa fa-check"></i></a>-->
+                                        <a class="btn btn-danger" href="{% url 'eliminar_calculo_pesocorregido' pesocorregido.id %}"><i class="fa fa-trash"></i></a>
+                                    </td>
                                 </tr>
                                 {% endfor %}
                             </tbody>
@@ -32,6 +37,7 @@
                                     <th>Nombre</th>
                                     <th>Peso Corregido</th>
                                     <th>Fecha</th>
+                                    <th>Accion</th>
                                 </tr>
                             </tfoot>
                         </table>

@@ -17,6 +17,7 @@
                                     <th>Alimento</th>
                                     <th>Cantidad</th>
                                     <th>Fecha de Agregado</th>
+                                    <th>Accion</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -26,6 +27,10 @@
                                     <td>{{ grupo_nutri.food }}</td>
                                     <td>{{ grupo_nutri.get_amount }}</td>
                                     <td>{{ grupo_nutri.created }}</td>
+                                    <td>
+                                        <!--<a class="btn btn-warning" href="{% url 'eliminar_calculo_grupo' grupo_nutri.id %}"><i class="fa fa-check"></i></a>-->
+                                        <a class="btn btn-danger" href="{% url 'eliminar_calculo_grupo' grupo_nutri.id %}"><i class="fa fa-trash"></i></a>
+                                    </td>
                                 </tr>
                                 {% endfor %}
                             </tbody>
@@ -35,6 +40,7 @@
                                     <th>Alimento</th>
                                     <th>Cantidad</th>
                                     <th>Fecha de Agregado</th>
+                                    <th>Accion</th>
                                 </tr>
                             </tfoot>
                         </table>

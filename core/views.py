@@ -172,3 +172,24 @@ def calendario(request):
     context = {'lista_citas':lista_citas}
 
     return render(request, 'core/calendario.html', context)
+
+@login_required(login_url='login')
+@allow_users(allowed_roles=['admin'])
+def eliminarCalculoPesoCorregido(request, pesocorregido_id):
+    corrected_weight = PesoCorregido.objects.get(id=pesocorregido_id)
+    corrected_weight.delete()
+    return redirect('lista_pesocorregido')
+
+@login_required(login_url='login')
+@allow_users(allowed_roles=['admin'])
+def eliminarCalculoGer(request, ger_id):
+    ger = GER.objects.get(id=ger_id)
+    ger.delete()
+    return redirect('lista_ger')
+
+@login_required(login_url='login')
+@allow_users(allowed_roles=['admin'])
+def eliminarCalculoGrupoNutri(request, grupo_id):
+    grupo = Food_Group.objects.get(id=grupo_id)
+    grupo.delete()
+    return redirect('lista_grupo_nutricional')

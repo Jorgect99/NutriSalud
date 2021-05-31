@@ -17,6 +17,7 @@
                                     <th>GER</th>
                                     <th>GET</th>
                                     <th>Fecha</th>
+                                    <th>Accion</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -26,6 +27,10 @@
                                     <td>{{ ger.ger|floatformat:-2 }}</td>
                                     <td>{{ ger.get|floatformat:-2 }}</td>
                                     <td>{{ ger.created }}</td>
+                                    <td>
+                                        <!--<a class="btn btn-warning" href="{% url 'eliminar_calculo_ger' ger.id %}"><i class="fa fa-check"></i></a>-->
+                                        <a class="btn btn-danger" href="{% url 'eliminar_calculo_ger' ger.id %}"><i class="fa fa-trash"></i></a>
+                                    </td>
                                 </tr>
                                 {% endfor %}
                             </tbody>
@@ -35,6 +40,7 @@
                                     <th>GER</th>
                                     <th>GET</th>
                                     <th>Fecha</th>
+                                    <th>Accion</th>
                                 </tr>
                             </tfoot>
                         </table>
