@@ -22,7 +22,7 @@ def allow_users(allowed_roles=[]):
             if group in allowed_roles:
                 return view_func(request, *args, **kwargs)
             else:
-                return redirect('error')
+                return HttpResponseRedirect('/web')
                 
         return wrapper_func
     return decorator
