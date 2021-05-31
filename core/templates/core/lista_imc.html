@@ -1,0 +1,58 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}IMC{% endblock %}
+{% block links %}<link href="{% static 'core/assets/extra-libs/datatables.net-bs4/css/dataTables.bootstrap4.css' %}" rel="stylesheet">{% endblock %}
+{% block content %}
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Listado de Calculos IMC</h4>
+                    <div class="table-responsive">
+                        <table id="zero_config" class="table table-striped table-bordered no-wrap">
+                            <thead>
+                                <tr>
+                                    <th>Nombre</th>
+                                    <th>IMC</th>
+                                    <th>Nivel de Peso</th>
+                                    <th>Fecha</th>
+                                    <th>Accion</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for imc in lista_imc %}
+                                <tr>
+                                    <td>{{ imc.client.user.first_name }} {{ imc.client.user.last_name }}</td>
+                                    <td>{{ imc.imc|floatformat:-2 }}</td>
+                                    <td>{{ imc.weight_level }}</td>
+                                    <td>{{ imc.created }}</td>
+                                    <td>
+                                        <!--<a class="btn btn-warning" href="{% url 'eliminar_calculo_imc' imc.id %}"><i class="fa fa-check"></i></a>-->
+                                        <a class="btn btn-danger" href="{% url 'eliminar_calculo_imc' imc.id %}"><i class="fa fa-trash"></i></a>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th>Nombre</th>
+                                    <th>IMC</th>
+                                    <th>Nivel de Peso</th>
+                                    <th>Fecha</th>
+                                    <th>Accion</th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+{% block js %}
+    <script src="{% static 'core/assets/extra-libs/sparkline/sparkline.js' %}"></script>
+    <script src="{% static 'core/assets/extra-libs/datatables.net/js/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static 'core/dist/js/pages/datatable/datatable-basic.init.js' %}"></script>
+{% endblock %}
