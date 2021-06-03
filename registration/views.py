@@ -38,6 +38,7 @@ def loginPage(request):
             user = authenticate(username=email, password=password)
             if user:
                 login(request, user) 
+                request.session.set_expiry(18000)
                 if user.is_staff:
                     return HttpResponseRedirect('/')
                 else:
