@@ -1,6 +1,27 @@
 {% extends 'core/base.html' %}
 {% load static %}
 
+{% block message %}
+<script>
+    function eliminarCliente(id){
+        Swal.fire({
+            "title":"¿Estás seguro?",
+            "text": "Esta acción no se puede deshacer",
+            "icon": "question",
+            "showCancelButton":true,
+            "cancelButtonText":"No, Cancelar",
+            "confirmButtonText":"Si, Eliminar",
+            "confirmButtonColor":"#ff4f70"
+        })
+        .then(function(result) {
+            if(result.isConfirmed) {
+                window.location.href = "/clientes/delete/"+id
+            }
+        });
+    }
+</script>
+{% endblock %}
+
 {% block title %}Clientes{% endblock %}
 {% block links %}<link href="{% static 'core/assets/extra-libs/datatables.net-bs4/css/dataTables.bootstrap4.css' %}" rel="stylesheet">{% endblock %}
 {% block content %}
@@ -29,7 +50,7 @@
                                     <td>{{ cliente.profile.phone }}</td>
                                     <td>
                                         <!--<a class="btn btn-warning" href="{% url 'eliminar_cliente' cliente.id %}"><i class="fa fa-check"></i></a>-->
-                                        <a class="btn btn-danger" href="{% url 'eliminar_cliente' cliente.id %}"><i class="fa fa-trash"></i></a>
+                                        <a class="btn btn-danger" href="#" onclick="eliminarCliente({{ cliente.id }})"><i class="fa fa-trash"></i></a>
                                         
                                     </td>
                                 </tr>

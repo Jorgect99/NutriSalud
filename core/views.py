@@ -7,6 +7,8 @@ from django.contrib.auth.models import User
 from .models import IMC, PesoCorregido, GER, Food_Group, Dieta
 from .forms import IMCForm, PesoCorregidoForm, GERForm, Food_GroupForm, DietForm
 from citas.models import *
+from django.contrib import messages
+
 
 # Create your views here.
 
@@ -27,6 +29,7 @@ def clientes(request):
 def eliminarCliente(request, cliente_id):
     cliente = User.objects.get(id=cliente_id)
     cliente.delete()
+    messages.success(request, "Eliminado Correctamente")
     return redirect('clientes')
 
 @login_required(login_url='login')
@@ -47,6 +50,7 @@ def imc(request):
 def eliminarCalculoIMC(request, imc_id):
     imc = IMC.objects.get(id=imc_id)
     imc.delete()
+    messages.success(request, "Eliminado Correctamente")
     return redirect('lista_imc')
 
 @login_required(login_url='login')
@@ -131,6 +135,7 @@ def editarCalculoDieta(request, dieta_id):
         form = DietForm(request.POST, instance=dieta)
         if form.is_valid():
             form.save()
+            messages.success(request, "Modificado Correctamente")
             return redirect('lista_dieta')
     context = {"form":form, "action":"Editar"}
     return render(request, 'core/formulas/dietas.html', context)
@@ -140,6 +145,7 @@ def editarCalculoDieta(request, dieta_id):
 def eliminarCalculoDieta(request, dieta_id):
     dieta = Dieta.objects.get(id=dieta_id)
     dieta.delete()
+    messages.success(request, "Eliminado Correctamente")
     return redirect('lista_dieta')
 
 
@@ -170,7 +176,6 @@ def calendario(request):
     context = {}
     lista_citas = Appointment.objects.all()
     context = {'lista_citas':lista_citas}
-
     return render(request, 'core/calendario.html', context)
 
 @login_required(login_url='login')
@@ -178,6 +183,7 @@ def calendario(request):
 def eliminarCalculoPesoCorregido(request, pesocorregido_id):
     corrected_weight = PesoCorregido.objects.get(id=pesocorregido_id)
     corrected_weight.delete()
+    messages.success(request, "Eliminado Correctamente")
     return redirect('lista_pesocorregido')
 
 @login_required(login_url='login')
@@ -185,6 +191,7 @@ def eliminarCalculoPesoCorregido(request, pesocorregido_id):
 def eliminarCalculoGer(request, ger_id):
     ger = GER.objects.get(id=ger_id)
     ger.delete()
+    messages.success(request, "Eliminado Correctamente")
     return redirect('lista_ger')
 
 @login_required(login_url='login')
@@ -192,4 +199,5 @@ def eliminarCalculoGer(request, ger_id):
 def eliminarCalculoGrupoNutri(request, grupo_id):
     grupo = Food_Group.objects.get(id=grupo_id)
     grupo.delete()
+    messages.success(request, "Eliminado Correctamente")
     return redirect('lista_grupo_nutricional')

@@ -215,6 +215,22 @@
     <script src="{% static 'core/assets/extra-libs/jvector/jquery-jvectormap-world-mill-en.js' %}"></script>
     <script src="{% static 'core/dist/js/pages/dashboards/dashboard1.min.js' %}"></script>
     
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    {% if messages %}
+        {% for message in messages %}
+            <script>
+                Swal.fire({
+                    "title":"Listo!!",
+                    "text": "{{ message }}",
+                    "icon": "success"
+                });
+            </script>
+        {% endfor %}
+    {% endif %}
+    
+    {% block message %}
+    {% endblock %}
+
     {% block js %}
     {% endblock %}
     
