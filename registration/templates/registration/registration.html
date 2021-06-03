@@ -1,6 +1,8 @@
 {% extends 'web/base-index.html' %}
 {% load static %}
 {% block title %}Registro de usuario{% endblock %}
+
+
 {% block content %}
 <main role="main">
   <div class="container">
@@ -13,16 +15,36 @@
         {% endif %}
         <form action="" method="post">{% csrf_token %}
           <h3 class="mb-4">Registro de usuario</h3>
-          {{ form.errors }}
+          {% if form.errors %}
+            <div class="alert alert-danger">
+            {{ form.non_field_errors }}
+            {% for field in form %}
+              {% for error in field.errors %}
+                  {{field.label}} {{ error|escape }}
+              {% endfor %}
+            {% endfor %}
+            </div>
+          {% endif %}
+      
           <p>
+            {% if field.errors %}
+              <div class="alert alert-danger">
+                {{ form.first_name.errors }}
+              </div>
+            {% endif %}
             {{ form.first_name.label }}
-            <input type="text" name="first_name" required
+            <input type="text" name="first_name" required 
               id="id_first_name" class="form-control" placeholder=""/>
           </p>
           <div class="row">
             <div class="col-lg-6">
                 <div class="grid-container">
                     <p>
+                      {% if field.errors %}
+                        <div class="alert alert-danger">
+                          {{ form.last_name.errors }}
+                        </div>
+                      {% endif %}
                       {{ form.last_name.label }}
                       <input type="text" name="last_name" required
                         id="id_last_name" class="form-control" placeholder=""/>
@@ -32,6 +54,11 @@
             <div class="col-lg-6">
                 <div class="grid-container">
                     <p>
+                      {% if field.errors %}                       
+                        <div class="alert alert-danger">
+                          {{ form.last_name_m.errors }}
+                        </div>
+                      {% endif %}
                       {{ form.last_name_m.label }}
                       <input type="text" name="last_name_m" 
                         id="id_last_name_m" class="form-control" placeholder=""/>
@@ -40,6 +67,11 @@
             </div>
           </div>
           <p>
+            {% if field.errors %} 
+              <div class="alert alert-danger">
+                {{ form.email.errors }}
+              </div>
+            {% endif %}
             {{ form.email.label }}
             <input type="email" name="email" required
               id="id_email" class="form-control" placeholder=""/>
@@ -48,6 +80,11 @@
             <div class="col-lg-6">
                 <div class="grid-container">
                     <p>
+                      {% if field.errors %}
+                        <div class="alert alert-danger">
+                          {{ form.password.errors }}
+                        </div>
+                      {% endif %}
                       {{ form.password.label }}
                       <input type="password" name="password" required
                         id="id_password" class="form-control" placeholder=""/>
@@ -57,6 +94,11 @@
             <div class="col-lg-6">
                 <div class="grid-container">
                     <p>
+                      {% if field.errors %}
+                        <div class="alert alert-danger">
+                          {{ form.password2.errors }}
+                        </div>
+                      {% endif %}
                       {{ form.password2.label }}
                       <input type="password" name="password2" required
                         id="id_password2" class="form-control" placeholder=""/>
@@ -71,4 +113,39 @@
     </div>
   </div>
 </main>
+
+<script>
+  jQuery("input[type='text']").focusout(function(){
+      jQuery(this).next('div.alert').remove()
+      
+      if(0 == jQuery(this).val().length) return;
+      const re = /^[0-9]{10}/
+      if (jQuery(this).attr('name') == "phone"){
+          if (jQuery(this).val().length != 10){
+              jQuery(this).after("<div class='alert alert-danger mt-2'>Debe de contener 10 caracteres</div>")
+          }
+          else if(!re.test(jQuery(this).val())){
+              jQuery(this).after("<div class='alert alert-danger mt-2'>Escribe unicamente los dígitos sin espacios ni guiones  </div>")
+          }
+      }else{
+          if(jQuery(this).val().length < 3){
+          jQuery(this).after("<div class='alert alert-danger mt-2'>Debe de contener 3 o más caracteres</div>")
+          }
+      }
+  })
+  jQuery("input[type='password']").focusout(function(){
+      const re = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!#%*?&]{8,}$/;
+      jQuery(this).next('div.alert').remove()
+      if(0 == jQuery(this).val().length) return;
+      if (jQuery(this).val().length < 8 || !re.test(jQuery(this).val())){
+          jQuery(this).after("<div class='alert alert-danger mt-2'>La contraseña debe de contener: <ul> <li>8 caracteres o más</li><li>Al menos una mayúscula</li><li>Al menos una minúscula</li><li>Al menos un número</li><li>Al menos un caractér especial</li></ul></div>")
+      }
+  })
+  jQuery("form").on('submit', function(e) {
+      if(jQuery("div.alert-danger").length){
+          e.preventDefault();
+          e.returnValue = false;
+      }
+  });
+</script>
 {% endblock %}

@@ -13,7 +13,7 @@ class LoginForm(forms.Form):
     password = forms.CharField(label='Contraseña:', max_length=100)
 
 class SignupForm(forms.ModelForm):
-    last_name_m = forms.CharField(label='Apellido Materno:', max_length=100)
+    last_name_m = forms.CharField(label='Apellido Materno:', max_length=100, required=False)
     password = forms.CharField(label='Contraseña:', max_length=100)
     password2 = forms.CharField(label='Repetir Contraseña:', max_length=100)
 
@@ -30,11 +30,12 @@ class SignupForm(forms.ModelForm):
     def clean(self):
         data = super(SignupForm, self).clean()
         if not ('first_name' in data and data['first_name']):
-            raise ValidationError("Se requiere nombre")
+            raise ValidationError("Se requiere Nombre")
 
         if 'password' in data and data['password'] != data['password2']:
-            raise ValidationError("Contraseñas no coinciden")
+            raise ValidationError("Contraseñas no coinciden, vuelve a intentar")
     
+
     def clean_email(self):
         email = self.cleaned_data.get('email')
         if User.objects.filter(email=email).exists():
@@ -46,7 +47,6 @@ class SignupForm(forms.ModelForm):
         user = super(SignupForm, self).save(commit=False)
         profile = {
             "last_name_m": self.cleaned_data.get('last_name_m')
-
         }
         user.profile = Profile(**profile)
 
