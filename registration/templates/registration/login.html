@@ -9,8 +9,8 @@
   {% endif %}
   <form action="" method="post">{% csrf_token %}
     <h3 class="mb-4">Iniciar sesión</h3>
-    {% if erorr %}
-      <div class="alert alert-danger">
+    {% if error %}
+      <div class="alert alert-danger mb-0">
         {{ error }}
       </div>
     {% endif %}

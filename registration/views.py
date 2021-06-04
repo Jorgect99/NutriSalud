@@ -30,6 +30,7 @@ def signupPage(request):
 
 @unauthenticated_user
 def loginPage(request):
+    context = {}
     if request.POST:
         form = LoginForm(request.POST)
         if form.is_valid(): 
@@ -45,9 +46,10 @@ def loginPage(request):
                     return HttpResponseRedirect('/citas')
             else:
                 error = "Usuario o contraseña incorrectos, prueba de nuevo."
+                context['error'] = error
     else:
         form = LoginForm()
-    context = {'form':form}
+    context['form'] = form
     return render(request, 'registration/login.html', context)
 
 def logoutPage(request):
