@@ -138,6 +138,17 @@ EMAIL_HOST_USER = '246be2383ccde2'
 EMAIL_HOST_PASSWORD = 'e3aa019411dd36'
 EMAIL_PORT = '2525'
 
+#Security Policy Analysis
+CSRF_COOKIE_HTTPONLY = True
+SESSION_COOKIE_HTTPONLY = True
+SECURE_BROWSER_XSS_FILTER = True
+SECURE_HSTS_SECONDS = 31536000
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_HSTS_PRELOAD = True
+SECURE_CONTENT_TYPE_NOSNIFF = True
+X_FRAME_OPTIONS = 'DENY'
+CSP_DEFAULT_SRC = ["'self'"]
+
 # Emails
 #if DEBUG:
 #    EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
@@ -148,3 +159,4 @@ EMAIL_PORT = '2525'
 
 # Activate Django-Heroku.
 django_heroku.settings(locals())
+
