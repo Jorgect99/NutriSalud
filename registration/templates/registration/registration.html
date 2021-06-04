@@ -33,7 +33,7 @@
               </div>
             {% endif %}
             {{ form.first_name.label }}
-            <input type="text" name="first_name" required 
+            <input type="text" name="first_name" required pattern="[A-zÀ-ú\s]*" title="Solo letras, no numeros ni caracteres especiales."
               id="id_first_name" class="form-control" placeholder=""/>
           </p>
           <div class="row">
@@ -46,7 +46,7 @@
                         </div>
                       {% endif %}
                       {{ form.last_name.label }}
-                      <input type="text" name="last_name" required
+                      <input type="text" name="last_name" required pattern="[A-zÀ-ú\s]*" title="Solo letras, no numeros ni caracteres especiales."
                         id="id_last_name" class="form-control" placeholder=""/>
                     </p>
                 </div>
@@ -60,7 +60,7 @@
                         </div>
                       {% endif %}
                       {{ form.last_name_m.label }}
-                      <input type="text" name="last_name_m" 
+                      <input type="text" name="last_name_m" pattern="[A-zÀ-ú\s]*" title="Solo letras, no numeros ni caracteres especiales."
                         id="id_last_name_m" class="form-control" placeholder=""/>
                     </p>
                 </div>

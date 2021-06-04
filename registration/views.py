@@ -43,9 +43,8 @@ def loginPage(request):
                     return HttpResponseRedirect('/')
                 else:
                     return HttpResponseRedirect('/citas')
-
             else:
-                error = "Login Error"
+                error = "Usuario o contraseña incorrectos, prueba de nuevo."
     else:
         form = LoginForm()
     context = {'form':form}
