@@ -20,6 +20,36 @@
                     <label>Cliente:</label>
                     {{ form.client }}
                 </p>
+                <div id="divDeCliente" class="row text-center">
+                    <div class="col-md-3">
+                        <p class="text-center h3">
+                            <label>IMC:</label>
+                            <br>
+                            <label id="lblIMC">-</label>
+                        </p>
+                    </div>
+                    <div class="col-md-3">
+                        <p class="text-center h3">
+                            <label>Peso Corregido:</label>
+                            <br>
+                            <label id="lblPeso">-</label>
+                        </p>
+                   </div>
+                    <div class="col-md-3">
+                        <p class="text-center h3">
+                            <label>Ger:</label>
+                            <br>
+                            <label id="lblGER">-</label>
+                        </p>
+                    </div>
+                    <div class="col-md-3">
+                        <p class="text-center h3">
+                            <label>GET:</label>
+                            <br>
+                            <label id="lblGET">-</label>
+                        </p>
+                    </div>
+                </div>
                 <div class="row">
                     <div class="col-md-3">
                         <p>
@@ -208,6 +238,41 @@
         });
     });
    
+    $("#id_client").change(function (){
+        console.log($("#id_client").select2("data")[0]["id"]);
+        jQuery.ajax({
+            dataType: "json",
+            type : "GET",
+            url: "/api/client/"+ $("#id_client").select2("data")[0]["id"],
+            success: function(data){
+                console.log(data)
+                if(isNaN(data["imc"])){
+                    $("#lblIMC").text("-")
+                } else {
+                    $("#lblIMC").text(data.imc.toFixed(2))
+                }
+
+                if(isNaN(data["peso"])){
+                    $("#lblPeso").text("-")
+                } else {
+                    $("#lblPeso").text(data.peso.toFixed(2))
+                }
+
+                if(isNaN(data["ger"])){
+                    $("#lblGER").text("-")
+                } else {
+                    $("#lblGER").text(data.ger.toFixed(2))
+                }
+
+                if(isNaN(data["get"])){
+                    $("#lblGET").text("-")
+                } else {
+                    $("#lblGET").text(data.get.toFixed(2))
+                }            
+            }
+        })
+    })
+
     function calcular(){
         var totalg_carbohydrates = (Number($("#id_vegetables").val()) * 4) + (Number($("#id_fruits").val()) * 15) + 
                                 (Number($("#id_cereals_and_tubers_s").val()) * 15) + (Number($("#id_cereals_and_tubers_c").val()) * 15) + 
@@ -274,5 +339,7 @@
         calcular();
 		$("input").change(calcular);
 	});
+
+    
 </script>
 {% endblock %}

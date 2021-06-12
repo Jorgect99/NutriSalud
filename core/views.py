@@ -1,12 +1,15 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required, user_passes_test
 from registration.decorators import unauthenticated_user, allow_users, admin_only
+from django.http import JsonResponse,HttpResponseRedirect
+from django.shortcuts import get_object_or_404
 
 from django.contrib.auth.models import User
 
 from .models import IMC, PesoCorregido, GER, Food_Group, Dieta
 from .forms import IMCForm, PesoCorregidoForm, GERForm, Food_GroupForm, DietForm
 from citas.models import *
+from registration.models import *
 from django.contrib import messages
 
 
@@ -115,8 +118,21 @@ def dieta(request):
         if form.is_valid():
             form.save()
             return redirect('lista_dieta')
+
     context = {'form':form, "action":"Agregar"}
     return render(request, 'core/formulas/dietas.html', context)
+
+@login_required(login_url='login')
+@allow_users(allowed_roles=['admin']) 
+def get_client_info(request, client_id):
+    client = get_object_or_404(Profile, id=client_id)
+    data = {
+        "imc": client.get_imc(),
+        "peso": client.get_peso(),
+        "ger": client.get_ger(),
+        "get": client.get_get(),
+    }
+    return JsonResponse(data, status=200)
 
 @login_required(login_url='login')
 @allow_users(allowed_roles=['admin'])
