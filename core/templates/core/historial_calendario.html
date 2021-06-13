@@ -173,8 +173,8 @@
                     
                     var d = new Date(data.date);
                     
-                    var date = d.getDate();
-                    var month = monthNames[d.getMonth() + 1];
+                    var date = d.getDate() + 1;
+                    var month = monthNames[d.getMonth()];
                     var year = d.getFullYear();
                         
                     var dateStr = month + "-" + date + "-" + year;
