@@ -29,4 +29,7 @@ urlpatterns = [
 
 
     path('calendario/', views.calendario, name="calendario"),
+    path('historial-calendario/', views.historial_calendario, name="historial-calendario"),
+    path('historial-calendario/delete/<int:cita_id>', views.eliminarCita, name="eliminar_cita"),
+    path('api/appointment/<int:cita_id>', views.get_info_cita, name="get_info_cita"),
 ]

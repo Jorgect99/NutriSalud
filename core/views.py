@@ -195,6 +195,38 @@ def calendario(request):
     return render(request, 'core/calendario.html', context)
 
 @login_required(login_url='login')
+@admin_only
+def historial_calendario(request):
+    context = {}
+    lista_citas = Appointment.objects.all()
+    context = {'lista_citas':lista_citas}
+    return render(request, 'core/historial_calendario.html', context)
+
+@login_required(login_url='login')
+@allow_users(allowed_roles=['admin'])
+def eliminarCita(request, cita_id):
+    cita = Appointment.objects.get(id=cita_id)
+    cita.delete()
+    messages.success(request, "Eliminado Correctamente")
+    return redirect('historial-calendario')
+
+@login_required(login_url='login')
+@allow_users(allowed_roles=['admin']) 
+def get_info_cita(request, cita_id):
+    cita = get_object_or_404(Appointment, id=cita_id)
+    data = {
+        "first_name": cita.client.first_name,
+        "last_name": cita.client.last_name,
+        "last_name_m": cita.client.profile.last_name_m,
+        "date": cita.date,
+        "hour": cita.hour,
+        "email": cita.client.email,
+        "phone": cita.client.profile.phone,
+        "commentary":cita.commentary,
+    }
+    return JsonResponse(data, status=200)
+
+@login_required(login_url='login')
 @allow_users(allowed_roles=['admin'])
 def eliminarCalculoPesoCorregido(request, pesocorregido_id):
     corrected_weight = PesoCorregido.objects.get(id=pesocorregido_id)

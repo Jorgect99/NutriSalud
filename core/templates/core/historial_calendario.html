@@ -1,0 +1,204 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block message %}
+<script>
+    function eliminarCita(id){
+        Swal.fire({
+            "title":"¿Estás seguro?",
+            "text": "Esta acción no se puede deshacer",
+            "icon": "question",
+            "showCancelButton":true,
+            "cancelButtonText":"No, Cancelar",
+            "confirmButtonText":"Si, Eliminar",
+            "confirmButtonColor":"#ff4f70"
+        })
+        .then(function(result) {
+            if(result.isConfirmed) {
+                window.location.href = "/historial-calendario/delete/"+id
+            }
+        });
+    }
+</script>
+{% endblock %}
+
+{% block title %}Citas{% endblock %}
+{% block links %}<link href="{% static 'core/assets/extra-libs/datatables.net-bs4/css/dataTables.bootstrap4.css' %}" rel="stylesheet">{% endblock %}
+{% block content %}
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Historial de Calendario</h4>
+                    <div class="table-responsive">
+                        <table id="zero_config" class="table table-striped table-bordered no-wrap">
+                            <thead>
+                                <tr>
+                                    <th>Fecha de la Cita</th>
+                                    <th>Nombre cliente</th>
+                                    <th>Correo</th>
+                                    <th>Telefono</th>
+                                    <th>Accion</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for cita in lista_citas %}
+                                <tr>
+                                    <td>{{ cita.date }}, {{ cita.hour }}</td>
+                                    <td>{{ cita.client.profile }}</td>
+                                    <td>{{ cita.client.email }}</td>
+                                    <td>{{ cita.client.profile.phone }}</td>
+                                    <td>
+                                        <a class="btn btn-danger" href="#" onclick="eliminarCita({{ cita.id }})"><i class="fa fa-trash"></i></a>
+                                        <a class="btn btn-primary" href="#" onclick="detailCita({{ cita.id }})"><i class="fa fa-eye"></i></a>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th>Fecha de la Cita</th>
+                                    <th>Nombre cliente</th>
+                                    <th>Correo</th>
+                                    <th>Telefono</th>
+                                    <th>Accion</th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+{% block js %}
+    <script src="{% static 'core/assets/extra-libs/sparkline/sparkline.js' %}"></script>
+    <script src="{% static 'core/assets/extra-libs/datatables.net/js/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static 'core/dist/js/pages/datatable/datatable-basic.init.js' %}"></script>
+
+     
+
+    <div class="modal fade" id="myModalCita" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Cita</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    <label>Nombre(s):</label>
+                    <input type="text" name="first_name" required
+                        id="id_first_name" class="form-control" readonly/>
+                </p>
+                <div class="row">
+                <div class="col-lg-6">
+                    <div class="grid-container">
+                    <p>
+                        <label>Apellido Paterno:</label>
+                        <input type="text" name="last_name" required
+                        id="id_last_name" class="form-control"  readonly/>
+                    </p>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="grid-container">
+                    <p>
+                        <label>Apellido Materno:</label>
+                        <input type="text" name="last_name_m"
+                        id="id_last_name_m" class="form-control" readonly/>
+                    </p>
+                    </div>
+                </div>
+                </div>
+                <p>
+                <label>Correo electronico:</label>
+                <input type="email" name="email" required id="id_email" class="form-control" readonly>
+                </p>
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="grid-container">
+                            <p>
+                            <label>Telefono:</label>
+                            <input type="text" name="phone" readonly
+                                id="id_phone" class="form-control"/>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="grid-container">
+                            <p>
+                            <label>Fecha:</label>
+                            <input type="text" name="date" readonly
+                                id="id_date" class="form-control"/>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="grid-container">
+                            <p>
+                            <label>Hora:</label>
+                            <input type="text" name="hour" readonly
+                                id="id_hour" class="form-control"/>
+                            </p>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <p>
+                <label>Comentario:</label>
+                <textarea name="commentary" id="id_commentary"class="form-control" rows="3" readonly ></textarea>
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Listo!</button>
+            </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function detailCita(id){
+            jQuery.ajax({
+                dataType: "json",
+                type : "GET",
+                url: "/api/appointment/"+id,
+                success: function(data){
+                    const monthNames = ["Ene", "Feb", "Mar", "Apr", "May", "Jun",
+                        "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+                    ];
+                    
+                    var d = new Date(data.date);
+                    
+                    var date = d.getDate();
+                    var month = monthNames[d.getMonth() + 1];
+                    var year = d.getFullYear();
+                        
+                    var dateStr = month + "-" + date + "-" + year;
+
+                    $("#id_first_name").val(data.first_name)
+
+                    $("#id_last_name").val(data.last_name)
+
+                    $("#id_last_name_m").val(data.last_name_m)
+
+                    $("#id_email").val(data.email)
+
+                    $("#id_phone").val(data.phone)
+                    
+                    $("#id_date").val(dateStr)
+
+                    $("#id_hour").val(data.hour)
+
+                    $("#id_commentary").val(data.commentary)
+
+                }
+            });
+            $('#myModalCita').modal('show');
+        }
+    </script>
+
+{% endblock %}
