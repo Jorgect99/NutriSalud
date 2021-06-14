@@ -25,7 +25,11 @@ urlpatterns = [
     path('formula/lista-grupos-nutri/delete/<int:grupo_id>', views.eliminarCalculoGrupoNutri, name="eliminar_calculo_grupo"),
     path('formula/menu', views.menu, name="menu"),
     path('formula/dieta', views.dieta, name="dieta"),
+    path('api/client/<int:client_id>', views.get_client_info, name="get_client_info"),
 
 
     path('calendario/', views.calendario, name="calendario"),
+    path('historial-calendario/', views.historial_calendario, name="historial-calendario"),
+    path('historial-calendario/delete/<int:cita_id>', views.eliminarCita, name="eliminar_cita"),
+    path('api/appointment/<int:cita_id>', views.get_info_cita, name="get_info_cita"),
 ]

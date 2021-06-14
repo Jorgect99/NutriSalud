@@ -13,6 +13,8 @@ class Appointment(models.Model):
     def endhour(self):
         return datetime.combine(self.date, self.hour) + timedelta(hours=1)
 
+    def datewithhour(self):
+        return datetime.combine(self.date ,self.hour)
 
     class Meta:
-        ordering = ['commentary']
+        ordering = ['-date']

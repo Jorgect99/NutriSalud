@@ -18,5 +18,25 @@ class Profile(models.Model):
     class Meta:
         ordering = ['user__username']
     
+    def get_imc(self):
+        if self.imc.exists():
+            return self.imc.latest('created').imc
+        return "-"
+
+    def get_peso(self):
+        if self.pesocorregido.exists():
+            return self.pesocorregido.latest('created').corrected_weight
+        return "-"
+    
+    def get_ger(self):
+        if self.ger.exists():
+            return self.ger.latest('created').ger
+        return "-"
+    
+    def get_get(self):
+        if self.ger.exists():
+            return self.ger.latest('created').get
+        return "-"
+
     def __str__(self):
         return "{0} {1} {2}".format(self.user.first_name, self.user.last_name, self.last_name_m)
