@@ -431,6 +431,19 @@
   <!-- Template Main JS File -->
   <script src="{% static 'web/assets/js/main.js' %}"></script>
 
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  {% if messages %}
+      {% for message in messages %}
+          <script>
+              Swal.fire({
+                  "title":"Listo!",
+                  "text": "{{ message }}",
+                  "icon": "success"
+              });
+          </script>
+      {% endfor %}
+  {% endif %}
+
 </body>
 </html>
 <script>

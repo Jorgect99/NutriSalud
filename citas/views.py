@@ -4,6 +4,7 @@ from registration.decorators import unauthenticated_user, allow_users, admin_onl
 from .forms import AppointmentForm
 from django.contrib.auth.models import User
 from .models import Appointment
+from django.contrib import messages
 
 # Create your views here.
 @login_required(login_url='login')
@@ -14,6 +15,7 @@ def setAppointment(request):
         form = AppointmentForm(request.POST)
         if form.is_valid():
             form.save(request=request)
+            messages.success(request, "Cita Agendada Correctamente!")
             return HttpResponseRedirect('/web')
 
     lista_citas = Appointment.objects.all()
