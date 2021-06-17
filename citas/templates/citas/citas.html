@@ -47,14 +47,14 @@
                   <p>
                     <label>Telefono:</label>
                     <input type="text" name="phone"
-                      id="id_phone" class="form-control" value="{{ request.user.profile.phone }}"/>
+                      id="id_phone" class="form-control" required value="{{ request.user.profile.phone }}"/>
                   </p>
               </div>
             </div>
             <div class="col-lg-4">
               <div class="grid-container">
                   <p>
-                    <label>Fecha:</label>
+                    <label>Fecha de Cita:</label>
                     <input type="date" name="date" id="id_date" class="form-control" required>
                   </p>
               </div>
